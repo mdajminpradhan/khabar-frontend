@@ -1,0 +1,47 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// services styles starts here
+
+.services {
+
+    padding: 4rem 0;
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 3rem;
+
+        .services__service {
+            display: grid;
+            grid-template-columns: .2fr .8fr;
+            grid-gap: 2rem;
+            padding: 2rem;
+            border: 3px dashed #d1d1d175;
+            transition: all 1s;
+            border-radius: 8px;
+
+            &:hover {
+                border-color: $primary;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            div {
+                h1 {
+                    font-size: 1.1rem !important;
+                }
+
+                p {
+                    color: $gray;
+                    font-size: .85rem !important;
+                }
+            }
+        }
+    }
+}
