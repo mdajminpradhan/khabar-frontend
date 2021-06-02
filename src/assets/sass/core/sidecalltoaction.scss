@@ -1,0 +1,45 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// sidecalltoaction styles starts here
+
+.sidecalltoaction {
+    background: $primary;
+    border-radius: 12px;
+    text-align: center;
+    padding: 2rem 1rem;
+
+    h2 {
+        font-family: 'Norican', cursive;
+        font-size: 2.5rem !important;
+        color: white;
+    }
+
+    h1 {
+        font-size: 4rem !important;
+        color: red;
+        font-weight: 800;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+    }
+
+    h4 {
+        text-transform: uppercase;
+        color: white;
+        font-weight: 700;
+        font-size: 1.2rem !important;
+    }
+
+    h3 {
+        color: red;
+        font-weight: 700;
+        font-size: 1.7rem !important;
+    }
+
+    img {
+        width: 100%;
+    }
+}

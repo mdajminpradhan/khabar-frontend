@@ -1,0 +1,98 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// banner styles starts here
+
+.banner {
+	background: #f7f2e2;
+	padding: 4rem 0;
+
+	.container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 2rem;
+
+		.banner {
+			display: grid;
+			grid-template-columns: .4fr .6fr;
+			grid-gap: 1rem;
+			background: white;
+			border-radius: 5px;
+			padding: 1.5rem 2rem;
+
+			&:hover .banner__image:before {
+				transform: scale(1.1);
+			}
+
+			div {
+				h1 {
+					color: $black;
+				}
+
+				p {
+					text-transform: uppercase;
+					font-size: .8rem !important;
+					font-weight: 400;
+					margin-top: 1rem;
+					color: gray;
+
+					&:nth-child(3) {
+						margin-top: 0 !important;
+					}
+				}
+
+				h3 {
+					margin-top: 1rem;
+					color: $secondary;
+				}
+			}
+			.banner__image {
+				position: relative;
+
+				&:before {
+					content: '';
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					background: $primary;
+					border-radius: 50%;
+					transition: all .3s;
+				}
+
+				img {
+					width: 100%;
+					position: relative;
+					z-index: 2;
+				}
+			}
+
+			&:last-child {
+
+                div {
+
+                    h2 {
+                        margin-bottom: 2rem;
+
+                    }
+
+                    a {
+                        color: $primary;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                    }
+                }
+
+				.banner__image {
+                    img {
+                        width: 90%;
+                    }
+                }
+			}
+		}
+	}
+}

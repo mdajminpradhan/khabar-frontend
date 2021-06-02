@@ -1,0 +1,75 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// recipe styles starts here
+
+.recipe {
+	border: 1px solid $border;
+	border-radius: 25px;
+	padding: .5rem;
+
+	.recipe__body {
+		display: grid;
+		grid-template-columns: .25fr .75fr;
+		grid-gap: 2rem;
+		align-items: center;
+		background: #fff9e8;
+		border-radius: 25px;
+		padding: 1rem 0;
+		position: relative;
+
+		.recipe__bodyLeft {
+			img {
+				width: 100%;
+			}
+		}
+
+		.recipe__bodyRight {
+			h4 {
+				font-size: .95rem !important;
+			}
+
+			.review {
+				padding: .25rem 0;
+				svg {
+					fill: $primary;
+					font-size: .85rem;
+				}
+			}
+
+			small {
+				color: $gray;
+				font-weight: 400;
+				font-size: .8rem;
+			}
+
+			.content {
+				color: $gray;
+				font-size: .9rem !important;
+				margin-bottom: 0.5rem;
+			}
+
+			.price {
+				margin-top: .5rem;
+				color: $primary;
+				font-size: .95rem !important;
+				font-weight: 700;
+			}
+
+			.basket {
+				position: absolute;
+				right: 5%;
+				bottom: 5%;
+				z-index: 2;
+                background: #ffc222;
+				fill: #1e1d23;
+				padding: 10px;
+				font-size: 2.4rem;
+				border-radius: 13px;
+			}
+		}
+	}
+}

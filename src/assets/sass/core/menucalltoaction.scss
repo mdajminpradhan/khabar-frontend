@@ -1,0 +1,84 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// menucalltoaction styles starts here
+
+.menucalltoaction {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
+	.menucalltoaction__left {
+		position: relative;
+
+		img {
+			width: 100%;
+			height: 100%;
+			filter: brightness(60%);
+		}
+
+		div {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			width: 80%;
+
+			h1 {
+				color: white;
+				font-size: 3rem !important;
+				font-weight: 800;
+			}
+
+			p {
+				color: white;
+				margin: 1.5rem 0;
+				margin-bottom: 3rem;
+				font-size: 1.2rem !important;
+				font-weight: 500;
+			}
+
+			button {
+				padding: 1rem 2.5rem !important;
+				font-size: .9rem !important;
+			}
+		}
+	}
+
+	.menucalltoaction__right {
+		background: $breadcum;
+		display: grid;
+		place-items: center;
+
+		.container {
+			width: 50%;
+            display: grid;
+            grid-row-gap: 2rem;
+
+			div {
+				div {
+					@include flexBetweenCenter;
+					border-bottom: 1px dashed rgba(128, 128, 128, 0.5);
+
+					h1 {
+						font-size: 1.7rem !important;
+					}
+
+					p {
+						color: $primary;
+						font-size: 1.2rem !important;
+						font-weight: 600;
+					}
+				}
+
+                span {
+                    color: $gray;
+                    font-size: .9rem;
+                }
+			}
+		}
+	}
+}

@@ -1,0 +1,58 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// toprecipes styles starts here
+
+.toprecipes {
+
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr .42fr;
+        grid-gap: 1.5rem;
+
+        .toprecipes__left {
+            .toprecipes__leftHeader {
+                @include flexBetweenCenter;
+                margin-top: -1rem;
+
+                h1 {
+                    font-size: 2.5rem !important;
+                    color: $black;
+                    font-weight: 800;
+                }
+
+                a {
+                    @include flexAlignCenter;
+                    color: $black;
+                    transition: all .3s;
+
+                    &:hover {
+                        color: $primary;
+                    }
+
+                    svg {
+                        background: $secondary;
+                        color: white;
+                        border-radius: 8px;
+                        font-size: 1.5rem;
+                        padding: .25rem;
+                        margin-left: .75rem;
+                    }
+                }
+            }
+
+            .toprecipes__leftBody {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 2.5rem;
+                padding: 3rem 0;
+            }
+        }
+    }
+}

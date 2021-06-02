@@ -1,0 +1,92 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// footertop styles starts here
+
+.footertop {
+	background: black;
+	padding: 6rem 0;
+
+	.footertop__header {
+		position: relative;
+
+		img {
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 8%;
+		}
+	}
+
+	.container {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		padding-top: 3rem;
+
+		.footertop__column {
+			text-align: center;
+			p {
+				font-size: 1.3rem !important;
+				font-weight: 700;
+				color: white;
+				text-transform: uppercase;
+				margin-bottom: 1.5rem;
+			}
+
+			span {
+				color: gray;
+				font-size: .95rem;
+				display: block;
+				line-height: 1.7rem;
+			}
+
+			pre {
+				color: $primary;
+				font-weight: 700;
+				font-size: 1.1rem;
+				margin-top: 1rem;
+			}
+
+			.social {
+				margin-top: 1rem;
+				svg {
+					margin: 0;
+					background: white;
+					padding: .5rem;
+					border-radius: 50%;
+					font-size: 1.8rem !important;
+					color: black;
+				}
+			}
+
+			form {
+				display: grid;
+				grid-template-columns: 1fr .15fr;
+				align-items: center;
+				border: 1px solid #d1d1d123;
+				border-radius: 8px;
+				margin-top: 2rem;
+				padding: .3rem;
+				box-sizing: border-box;
+
+				input {
+					height: 100%;
+					background: transparent;
+					color: gray;
+					border: none;
+					outline: none;
+					padding: 0 .5rem;
+					font-size: .9rem !important;
+					width: 100%;
+				}
+
+				button {
+					padding: .7rem 1.35rem;
+				}
+			}
+		}
+	}
+}

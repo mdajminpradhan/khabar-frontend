@@ -1,0 +1,67 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// testimonial styles starts here
+
+.testimonial {
+    
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+
+    .testimonial__header {
+        display: grid;
+        grid-template-columns: .2fr .5fr .3fr;
+        grid-gap: 1rem;
+        margin-bottom: 1.5rem;
+
+        .testimonial__headerLeft {
+            position: relative;
+            img {
+                clip-path: circle(46% at 50% 50%);
+                width: 100%;
+            }
+
+            svg {
+                background: $secondary;
+                color: white;
+                padding: .5rem;
+                font-size: 1.6rem;
+                clip-path: circle(50% at 50% 50%);
+                position: absolute;
+                bottom: 5%;
+                right: 5%;
+            }
+        }
+
+        .testimonial__headerMiddle {
+            h5 {
+                font-size: 1rem !important;
+                margin-bottom: .25rem;
+            }
+
+            p {
+                font-weight: 400;
+                font-size: .8rem !important;
+                color: $gray
+            }
+        }
+
+        .testimonial__headerRight {
+            svg {
+                fill: $primary;
+            }
+        }
+    }
+
+    .testimonial__body {
+        p {
+            color: rgba(97, 119, 138, 0.897);
+            font-size: .92rem !important;
+            font-weight: 400;
+        }
+    }
+}

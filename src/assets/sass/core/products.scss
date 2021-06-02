@@ -1,0 +1,57 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// menus styles starts here
+
+.products {
+	padding: 3rem 0;
+
+	.container {
+		.products__header {
+			text-align: center;
+
+			ul {
+				margin: 2rem 0;
+				li {
+					display: inline-block;
+					list-style: none;
+					border: 1px solid $border;
+					border-radius: 30px;
+					font-size: .95rem;
+					font-weight: 700;
+					color: $black;
+					margin: 0 1rem;
+					padding: .7rem 2.2rem;
+					cursor: pointer;
+					transition: all .3s;
+
+					&:hover {
+						border-color: $primary;
+					}
+				}
+			}
+		}
+
+		.products__body {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-gap: 2.2rem;
+		}
+
+		button {
+			margin: 3rem 0;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            transition: all .3s;
+
+            &:hover {
+                color: white;
+            }
+		}
+	}
+}

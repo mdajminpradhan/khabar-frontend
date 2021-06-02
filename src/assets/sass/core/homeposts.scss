@@ -1,0 +1,48 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// homeposts styles starts here
+
+.homeposts {
+
+    padding: 6rem 0;
+
+    .container {
+        .homeposts__header {
+            @include flexBetweenCenter;
+
+            h1 {
+                font-size: 2.5rem !important;
+            }
+
+            a {
+                @include flexAlignCenter;
+                color: $black;
+                transition: all .3s;
+
+                &:hover {
+                    color: $primary;
+                }
+
+                svg {
+                    background: $secondary;
+                    color: white;
+                    border-radius: 8px;
+                    font-size: 1.5rem;
+                    padding: .25rem;
+                    margin-left: .75rem;
+                }
+            }
+        }
+
+        .homeposts__body {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 3rem;
+            padding-top: 2rem;
+        }
+    }
+}

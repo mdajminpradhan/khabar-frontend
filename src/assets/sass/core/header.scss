@@ -1,0 +1,83 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// header styles starts here
+
+.header {
+	.container {
+		@include flexBetweenCenter;
+
+		.header__left {
+			img {
+				width: 100%;
+			}
+		}
+
+		.header__middle {
+			ul {
+				li {
+					display: inline-block;
+					margin-right: 2rem;
+
+                    &:last-child {
+                        margin: 0;
+                    }
+
+					a {
+						color: $black;
+						font-weight: 600;
+                        font-size: .95rem;
+					}
+				}
+			}
+		}
+
+		.header__right {
+			@include flexAlignCenter;
+
+			.call {
+                display: grid;
+                grid-template-columns: .23fr 1fr;
+                grid-gap: 1rem;
+                width: 300px;
+
+				img {
+					width: 100%;
+				}
+
+                p {
+                    color: $gray;
+                    margin-bottom: 0;
+                }
+
+                pre {
+                    color: $primary;
+                    font-size: 1.5rem;
+                    font-weight: 800;
+                    margin-top: 0;
+                }
+			}
+
+			.search,
+			.user,
+			.wishlist,
+			.cart {
+				border: 1px solid #d1d1d181;
+				border-radius: 50%;
+				height: 40px;
+				width: 40px;
+				padding: 1rem;
+				display: grid;
+				place-content: center;
+				place-items: center;
+				font-size: 1.25rem;
+                margin-left: 1.3rem;
+                color: $black;
+			}
+
+		}
+	}
+}

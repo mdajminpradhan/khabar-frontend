@@ -1,0 +1,25 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// testimonials styles starts here
+
+.testimonials {
+
+    background: $halfbackground;
+    padding: 6rem 0;
+
+    h1 {
+        text-align: center;
+        font-size: 2.2rem !important;
+        margin-bottom: 2.7rem;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+    }
+}

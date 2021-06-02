@@ -1,0 +1,56 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// calltoaction styles starts here
+
+.calltoaction {
+	background-image: url('../../images/homepage/calltoaction/background.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 500px;
+    display: grid;
+    align-items: center;
+
+	.container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+
+
+		.calltoaction__left {
+            img {
+                margin-top: 2rem;
+                margin-left: 10rem;
+            }
+        }
+
+
+		.calltoaction__right {
+			h3 {
+				font-family: 'Norican', cursive;
+                color: white;
+                text-shadow: 0 0 10px black;
+                font-size: 4rem !important;
+
+			}
+
+            h1 {
+                font-size: 8rem !important;
+                font-weight: 800;
+                color: $primary;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.479);
+                margin-top: -2rem;
+            }
+
+            button {
+                margin-top: 3rem;
+                background: white;
+                color: $black;
+
+            }
+		}
+	}
+}

@@ -1,0 +1,33 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// footer styles starts here
+
+.footer {
+	background: $secondary;
+	padding: .5rem 0;
+
+	.container {
+		@include flexBetweenCenter;
+
+		p {
+			color: white;
+			font-size: .9rem !important;
+            width: 100%;
+
+			a {
+				color: $primary;
+			}
+		}
+
+		div {
+            text-align: right;
+			img {
+				width: 8%;
+			}
+		}
+	}
+}

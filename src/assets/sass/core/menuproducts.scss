@@ -1,0 +1,60 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// menuprouducts styles starts here
+
+.menuproducts {
+    padding: 5rem 0;
+
+	.container {
+		.menuproducts__header {
+			text-align: center;
+
+			h1 {
+				font-size: 2.5rem !important;
+			}
+
+			ul {
+				margin: 2rem 0;
+				li {
+					display: inline-block;
+					list-style: none;
+					border: 1px solid $border;
+					border-radius: 30px;
+					font-size: .95rem;
+					font-weight: 700;
+					color: $black;
+					margin: 0 1rem;
+					padding: .7rem 2.2rem;
+					cursor: pointer;
+					transition: all .3s;
+
+					&:hover {
+						border-color: $primary;
+					}
+				}
+			}
+		}
+
+		.menuproducts__body {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-gap: 2rem;
+            padding: 0 2rem;
+            padding-top: 1.5rem;
+
+            .recipe {
+                .recipe__body {
+                    .recipe__bodyRight {
+                        h4 {
+                            font-size: 1.3rem !important;
+                        }
+                    }
+                }
+            }
+		}
+	}
+}

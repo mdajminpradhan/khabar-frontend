@@ -1,0 +1,52 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+.topbar {
+	background: #1e1d23;
+	padding: .5rem 0;
+
+	.container {
+		@include flexBetweenCenter;
+
+		.topbar__left {
+			display: flex;
+			align-items: center;
+
+			div {
+				@include flexAlignCenter;
+
+				svg {
+					color: white;
+					margin-right: .5rem;
+				}
+
+				pre {
+					color: white;
+					font-size: .8rem;
+					font-weight: 500;
+				}
+
+				&:last-child {
+					margin-left: 1.9rem !important;
+				}
+			}
+		}
+
+		.topbar__right {
+			display: inline-block;
+
+			svg {
+				color: white;
+				margin-left: 1.8rem;
+				font-size: .85rem;
+
+				&:hover {
+					color: $primary;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,44 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// menus styles starts here
+
+.menus {
+	padding-bottom: 4rem;
+
+	button {
+		text-align: center;
+		position: relative;
+		top: -25px;
+		left: 50%;
+		transform: translateX(-50%);
+		cursor: pointer;
+        font-size: .95rem !important;
+	}
+
+	.container {
+		padding-top: 1rem;
+
+		ul {
+			display: grid;
+			grid-template-columns: repeat(8, 1fr);
+			grid-gap: 4rem;
+			align-items: center;
+			text-align: center;
+
+			li {
+				img {
+					width: 100%;
+				}
+
+				span {
+					font-weight: 600;
+					font-size: .9rem;
+				}
+			}
+		}
+	}
+}

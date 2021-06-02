@@ -1,0 +1,46 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// post styles starts here
+
+.post {
+    
+    border: 1px solid $border;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .post__thumbnail {
+
+        img {
+        border-radius: 10px;
+        width: 100%;
+        }
+    }
+
+    .post__content {
+        padding: 2rem 1.5rem;
+
+        small {
+            color: $gray;
+        }
+
+        h1 {
+            margin-top: .75rem;
+            font-size: 1.2rem !important;
+        }
+
+        p {
+            color: $gray;
+            margin: 1rem 0;
+            font-size: .9rem !important;
+            margin-bottom: 1.5rem;
+        }
+
+        button {
+            border-radius: 10px !important;
+        }
+    }
+}

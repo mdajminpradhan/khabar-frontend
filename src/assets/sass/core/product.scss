@@ -1,0 +1,101 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// product styles starts here
+
+.product {
+	border: 1px solid $border;
+	border-radius: 20px;
+	padding: .7rem;
+
+	&:hover .product__image:after {
+		height: 100%;
+		background: $primary;
+	}
+
+	&:hover .product__image svg {
+		fill: rgba(128, 128, 128, 0.5);
+	}
+
+	.product__image {
+		text-align: center;
+		position: relative;
+		height: 290px;
+		display: grid;
+		place-content: center;
+		place-items: center;
+
+		&:after {
+			content: '';
+			height: 50%;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			display: block;
+			border-radius: 20px;
+			background: #fff9e8;
+			transition: all .2s;
+		}
+
+		img {
+			width: 70%;
+			position: relative;
+			z-index: 2;
+		}
+
+		svg {
+			position: absolute;
+			right: 5%;
+			top: 5%;
+			z-index: 2;
+			fill: rgba(128, 128, 128, 0.3);
+			font-size: 1.5rem;
+		}
+	}
+
+	.product__body {
+		padding: 1rem 0.5rem;
+
+		.review {
+			svg {
+				color: $primary;
+				font-size: .85rem;
+				margin-right: .3rem;
+			}
+		}
+
+		h3 {
+			font-size: 1.1rem !important;
+			font-weight: 700;
+			margin: .3rem 0;
+		}
+
+		p {
+			color: $gray;
+			font-size: .85rem !important;
+		}
+
+		.priceAndCart {
+			@include flexBetweenCenter;
+
+			margin-top: 1rem;
+
+			h3 {
+				color: $primary;
+			}
+
+			svg {
+				background: #ffc222;
+				fill: #1e1d23;
+				padding: 10px;
+				font-size: 2.4rem;
+				border-radius: 13px;
+			}
+		}
+	}
+}

@@ -1,0 +1,96 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// cards styles starts here
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+	.card {
+		position: relative;
+		height: 500px;
+        overflow: hidden;
+
+		&:first-child {
+			background: $secondary;
+
+			h1 {
+				text-shadow: 2px 0 6px #00a850;
+			}
+		}
+
+		&:nth-child(2) {
+			background: $background;
+		}
+
+		&:nth-child(3) {
+			background: $primary;
+
+			h1 {
+				text-shadow: 2px 0 6px #00a851a4;
+			}
+
+            h2 {
+                color: $black;
+            }
+		}
+
+		div {
+			position: absolute;
+			z-index: 3;
+			top: 50%;
+			left: 25%;
+			transform: translate(-25%, -50%);
+
+			h3 {
+				font-family: 'Norican', cursive;
+				font-size: 2.5rem !important;
+				color: white;
+			}
+
+			h1 {
+				font-size: 5rem !important;
+				color: $primaryish;
+				text-transform: uppercase;
+			}
+
+			p {
+				color: #fff;
+				font-size: 1.2rem;
+				text-transform: uppercase;
+				line-height: 26px;
+				letter-spacing: 1.35px;
+			}
+
+			h2 {
+				color: $primary;
+				font-size: 2.5rem !important;
+				margin: 2rem 0;
+			}
+
+			button {
+				background: white;
+				cursor: pointer;
+
+				&:hover {
+					background: $black;
+					color: white;
+				}
+			}
+		}
+
+
+
+		img {
+			position: absolute;
+			right: -30%;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 90%;
+		}
+	}
+}

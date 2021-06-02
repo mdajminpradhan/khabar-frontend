@@ -1,0 +1,369 @@
+// styles imported here
+@import './mixins';
+@import './variable';
+
+// global styles starts here
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+b,
+input,
+textarea,
+button,
+span,
+p,
+pre,
+small,
+b,
+u,
+i,
+li {
+	font-family: 'Poppins', sans-serif;
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	width: 95%;
+	margin: auto;
+}
+
+button {
+	background: $primary;
+	color: $black;
+	font-weight: 700;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	font-size: 1.25rem;
+	padding: .9rem 2.2rem;
+	transition: all .5s;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #ffbc12;
+}
+
+// global styles ends here
+
+// responsive screen starts here
+@media (min-width: 320px) {
+	h1 {
+		font-size: 1.1rem !important;
+	}
+
+	h2 {
+		font-size: 1.05rem !important;
+	}
+
+	h3 {
+		font-size: 1rem !important;
+	}
+
+	h4 {
+		font-size: .95rem !important;
+	}
+
+	h5 {
+		font-size: .9rem !important;
+	}
+
+	h6 {
+		font-size: .85rem !important;
+	}
+
+	p {
+		font-size: .8rem !important;
+	}
+
+	button {
+		font-size: .8rem !important;
+	}
+
+	.display_grid_3 {
+		grid-template-columns: 1fr;
+	}
+
+	.display_grid_4 {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (min-width: 360px) {
+	h1 {
+		font-size: 1.15rem !important;
+	}
+
+	h2 {
+		font-size: 1.1rem !important;
+	}
+
+	h3 {
+		font-size: 1.05rem !important;
+	}
+
+	h4 {
+		font-size: 1rem !important;
+	}
+
+	h5 {
+		font-size: .95rem !important;
+	}
+
+	h6 {
+		font-size: .9rem !important;
+	}
+
+	p {
+		font-size: .85rem !important;
+	}
+}
+
+@media (min-width: 412px) {
+	h1 {
+		font-size: 1.2rem !important;
+	}
+
+	h2 {
+		font-size: 1.15rem !important;
+	}
+
+	h3 {
+		font-size: 1.1rem !important;
+	}
+
+	h4 {
+		font-size: 1.05rem !important;
+	}
+
+	h5 {
+		font-size: 1.1rem !important;
+	}
+
+	h6 {
+		font-size: 1rem !important;
+	}
+
+	p {
+		font-size: .9rem !important;
+	}
+}
+
+@media (min-width: 768px) {
+	h1 {
+		font-size: 1.3rem !important;
+	}
+
+	h2 {
+		font-size: 1.25rem !important;
+	}
+
+	h3 {
+		font-size: 1.2rem !important;
+	}
+
+	h4 {
+		font-size: 1.15rem !important;
+	}
+
+	h5 {
+		font-size: 1.1rem !important;
+	}
+
+	h6 {
+		font-size: 1rem !important;
+	}
+
+	p {
+		font-size: .95rem !important;
+	}
+
+	.display_grid_3 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 834px) {
+	h1 {
+		font-size: 1.4rem !important;
+	}
+
+	h2 {
+		font-size: 1.35rem !important;
+	}
+
+	h3 {
+		font-size: 1.3rem !important;
+	}
+
+	h4 {
+		font-size: 1.25rem !important;
+	}
+
+	h5 {
+		font-size: 1.2rem !important;
+	}
+
+	h6 {
+		font-size: 1.15rem !important;
+	}
+
+	p {
+		font-size: .95rem !important;
+	}
+}
+
+@media (min-width: 1024px) {
+	h1 {
+		font-size: 1.5rem !important;
+	}
+
+	h2 {
+		font-size: 1.45rem !important;
+	}
+
+	h3 {
+		font-size: 1.4rem !important;
+	}
+
+	h4 {
+		font-size: 1.35rem !important;
+	}
+
+	h5 {
+		font-size: 1.3rem !important;
+	}
+
+	h6 {
+		font-size: 1.25rem !important;
+	}
+
+	p {
+		font-size: .95rem !important;
+	}
+}
+
+@media (min-width: 1280px) {
+	h1 {
+		font-size: 1.6rem !important;
+	}
+
+	h2 {
+		font-size: 1.5rem !important;
+	}
+
+	h3 {
+		font-size: 1.45rem !important;
+	}
+
+	h4 {
+		font-size: 1.4rem !important;
+	}
+
+	h5 {
+		font-size: 1.35rem !important;
+	}
+
+	h6 {
+		font-size: 1.3rem !important;
+	}
+
+	p {
+		font-size: .95rem !important;
+	}
+	.display_grid_3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 1440px) {
+	h1 {
+		font-size: 1.75rem !important;
+	}
+
+	h2 {
+		font-size: 1.7rem !important;
+	}
+
+	h3 {
+		font-size: 1.65rem !important;
+	}
+
+	h4 {
+		font-size: 1.6rem !important;
+	}
+
+	h5 {
+		font-size: 1.55rem !important;
+	}
+
+	h6 {
+		font-size: 1.5rem !important;
+	}
+
+	p {
+		font-size: 1rem !important;
+	}
+}
+
+@media (min-width: 1920px) {
+	h1 {
+		font-size: 1.9rem !important;
+	}
+
+	h2 {
+		font-size: 1.85rem !important;
+	}
+
+	h3 {
+		font-size: 1.8rem !important;
+	}
+
+	h4 {
+		font-size: 1.75rem !important;
+	}
+
+	h5 {
+		font-size: 1.7rem !important;
+	}
+
+	h6 {
+		font-size: 1.65rem !important;
+	}
+
+	p {
+		font-size: 1rem !important;
+	}
+}
