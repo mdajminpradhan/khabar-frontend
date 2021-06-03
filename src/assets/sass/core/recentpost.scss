@@ -1,0 +1,37 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// recent styles starts from here
+
+.recent__post {
+	display: grid;
+	grid-template-columns: .4fr 1fr;
+	grid-gap: 1rem;
+    margin-bottom: 1.5rem;
+
+	.recentpost__thumbnail {
+		img {
+			width: 100%;
+			height: 80px;
+			border-radius: 5px;
+			object-fit: cover;
+		}
+	}
+
+	.recentpost__content {
+		span {
+			font-weight: 600;
+            display: block;
+            margin-bottom: .3rem;
+            font-size: .88rem;
+		}
+
+        small {
+            color: $gray;
+            font-size: .8rem;
+        }
+	}
+}

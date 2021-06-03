@@ -1,0 +1,30 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// blog styles starts from here
+
+.blog {
+	padding: 5rem 0;
+
+	.container {
+		display: grid;
+		grid-template-columns: 1fr .2fr;
+		grid-gap: 3rem;
+
+		.blog__left {
+			.post {
+				margin-bottom: 2rem;
+
+				.post__thumbnail {
+					img {
+						height: 375px !important;
+						object-fit: cover;
+					}
+				}
+			}
+		}
+	}
+}

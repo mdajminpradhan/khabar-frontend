@@ -1,0 +1,36 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// sidebarsearch styles starts from here
+
+.search {
+    background: $blogbackground;
+    border-radius: 5px;
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr .1fr;
+        align-items: center;
+        padding: 0 1rem;
+
+        input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: .9rem;
+            color: $gray;
+            font-size: 1rem;
+            background: transparent;
+            padding: 1rem 0rem;
+        }
+
+        svg {
+            color: $black;
+            font-size: 1.4rem;
+            stroke-width: 3.5;
+        }
+    }
+}

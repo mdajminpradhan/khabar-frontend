@@ -4,12 +4,14 @@ import Home from './user/Home'
 import About from './user/About'
 import Menu from './user/Menu'
 import Contact from './user/Contact'
+import Blog from './user/Blog'
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/contact" exact component={Contact} />
+        <Route path="/blog" exact component={Blog} />
         <Route path="/About" exact component={About} />
         <Route path="/menu" exact component={Menu} />
         <Route path="/" exact component={Home} />

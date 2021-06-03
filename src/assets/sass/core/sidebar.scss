@@ -1,0 +1,75 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// sidebar styles starts from here
+
+.sidebar {
+	.sidebar__search {
+		margin-bottom: 2rem;
+	}
+
+	.sidebar__categories {
+		border: 1px solid $border;
+		border-radius: 15px;
+		padding: .75rem;
+		margin-bottom: 3rem;
+
+
+		h3 {
+			font-size: 1.3rem !important;
+			padding: .5rem 0;
+			margin-left: 1rem;
+			margin-bottom: .25rem;
+		}
+
+		ul {
+			background: $blogbackground;
+			border-radius: 15px;
+			padding: .1rem 1.5rem;
+
+			li {
+				@include flexBetweenCenter;
+				margin: 1rem 0;
+				color: $gray;
+				cursor: pointer;
+
+				&:hover div {
+					color: $primary;
+				}
+
+				div {
+					@include flexAlignCenter;
+				transition: all .5s;
+
+
+					svg {
+						margin-right: .5rem;
+						font-size: 1.3rem;
+					}
+				}
+			}
+		}
+	}
+
+	.sidebar__recentPosts {
+		h3 {
+			font-size: 1.1rem !important;
+		}
+
+		.devider {
+			height: 2px;
+			width: 100%;
+			display: block;
+			border-bottom: 2px dashed $blogbackground;
+			margin-top: 0.5rem;
+			margin-bottom: 1.5rem;
+		}
+	}
+
+	.sidebar__tags {
+		margin-bottom: 2rem;
+	}
+}

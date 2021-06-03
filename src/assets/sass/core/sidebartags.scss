@@ -1,0 +1,32 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// sidebartags styles starts from here
+
+.tags {
+    h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        li {
+            border: 1px solid #d1d1d1;
+            border-radius: 30px;
+            font-size: .9rem;
+            display: inline-block;
+            padding: .2rem 1rem;
+            margin: .5rem .3rem;
+            transition: all .5s;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.85);
+
+            &:hover {
+                border-color: $primary;
+            }
+        }
+    }
+}
