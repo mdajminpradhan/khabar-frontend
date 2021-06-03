@@ -1,0 +1,88 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// contact styles starts from here
+
+.contact {
+	padding: 6rem 0;
+
+	h1 {
+		font-size: 2rem !important;
+	}
+
+	small {
+		color: $gray;
+		font-size: .9rem;
+	}
+
+	.container {
+		.contact__header {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			margin-top: 2.5rem;
+			margin-bottom: 3.5rem;
+
+			.contact-box {
+				div {
+					svg {
+						display: block;
+						font-size: 3rem;
+						color: $primary;
+						margin-bottom: 2rem;
+					}
+
+					span {
+						font-weight: 600;
+					}
+
+					pre,
+					p {
+						color: rgba(128, 128, 128, 0.678);
+						font-size: 1rem !important;
+					}
+				}
+			}
+		}
+
+		.contact__body {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+            border-radius: 15px;
+            overflow: hidden;
+
+			.contact__bodyRight {
+				border: 1px solid #d1d1d13d;
+				border-left: none;
+				padding: 3rem;
+
+				p {
+					margin-bottom: 2rem;
+					color: $gray;
+				}
+
+				form {
+					.input {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						grid-gap: 2rem;
+					}
+
+					input,
+					textarea {
+						border: 1px solid #d1d1d148;
+						outline: none;
+						font-size: .95rem;
+						padding: .5rem;
+						border-radius: 10px;
+						margin-bottom: 1.5rem;
+						width: 100%;
+						box-shadow: 0 5px 20px 0 rgba(135, 207, 235, 0.05);
+					}
+				}
+			}
+		}
+	}
+}
