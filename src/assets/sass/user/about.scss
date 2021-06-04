@@ -1,0 +1,245 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// about styles starts here
+
+.about {
+	padding: 6rem 0;
+	.container {
+		.about__herosection {
+			display: grid;
+			grid-template-columns: .45fr .55fr;
+			grid-gap: 3rem;
+
+			.about__herosectionLeft {
+				h2 {
+					color: $primary;
+					font-size: 2.5rem !important;
+					font-family: 'Norican', cursive;
+				}
+
+				h1 {
+					font-size: 3rem !important;
+					color: $black;
+					margin-bottom: 1rem;
+				}
+
+				p {
+					color: $gray;
+					font-size: .85rem !important;
+					margin-bottom: 2rem;
+				}
+
+				button {
+					padding: 1.1rem 2.5rem !important;
+					background: $primaryish !important;
+				}
+			}
+
+			.about__herosectionRight {
+				display: grid;
+				grid-template-columns: .4fr .6fr;
+				grid-gap: 1.5rem;
+
+				img {
+					width: 100%;
+					border-radius: 10px;
+					transition: all .5s;
+
+					&:hover {
+						transform: scale(1.01);
+					}
+				}
+
+				div {
+					img {
+						margin-bottom: 1.5rem;
+					}
+
+					.last {
+						width: 80%;
+						height: 250px;
+						object-fit: cover;
+					}
+				}
+			}
+		}
+	}
+
+	.about__play {
+		position: relative;
+		padding: 5rem 0;
+
+		img {
+			width: 100%;
+			height: 600px;
+			object-fit: cover;
+			filter: brightness(70%);
+		}
+
+		div {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			line-height: 3rem;
+			width: 100%;
+
+			h1 {
+				font-size: 2.5rem !important;
+				color: white;
+			}
+
+			svg {
+				background: $primary;
+				border-radius: 50%;
+				color: white;
+				font-size: 5rem;
+				padding: .5rem;
+				cursor: pointer;
+				transition: all .5s;
+
+				&:hover {
+					transform: scale(.95);
+				}
+			}
+
+			span {
+				display: block;
+				margin-bottom: 1rem;
+				font-size: 1.1rem !important;
+				color: white;
+			}
+		}
+	}
+
+	.container {
+		.aboutshow {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-gap: 3rem;
+			align-items: center;
+
+			.aboutshow__left {
+				h2 {
+					font-size: 1.7rem !important;
+					color: $primary;
+					font-family: 'Norican', cursive;
+				}
+
+				h1 {
+					font-size: 3rem !important;
+					margin-bottom: 1rem;
+				}
+
+				p {
+					color: $gray;
+					font-size: .85rem !important;
+					margin-bottom: 1rem;
+					width: 85%;
+				}
+			}
+
+			.aboutshow__right {
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	.about__testimonials {
+		background-image: linear-gradient(#05050575, #05050575), url('../../images/about/testimonial/background.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		height: 600px;
+		position: relative;
+
+		.container {
+			.about__testimonial {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+				color: white;
+
+				.testimonial__image {
+					position: relative;
+					width: 100px;
+					margin: auto;
+					margin-bottom: 1.5rem;
+
+					img {
+						width: 100%;
+						clip-path: circle(45% at 50% 50%);
+					}
+
+					svg {
+						background: $secondary;
+						color: white;
+						padding: .5rem;
+						font-size: 1.6rem;
+						clip-path: circle(50% at 50% 50%);
+						position: absolute;
+						bottom: 5%;
+						right: 5%;
+					}
+				}
+
+				.testimonial__review {
+					margin-bottom: 1rem;
+
+					svg {
+						color: $primary;
+						font-size: 1.25rem;
+						margin: 0 .3rem;
+					}
+				}
+
+				q {
+					font-size: 1.5rem;
+				}
+
+				h5 {
+					margin-top: 1rem;
+				}
+
+				p {
+					font-size: .8rem !important;
+				}
+			}
+		}
+	}
+
+	.aboutchef {
+		padding: 5rem 0;
+
+		.container {
+			.aboutchef__header {
+				padding-bottom: 2rem;
+				text-align: center;
+
+				h2 {
+					font-family: 'Norican', cursive;
+					color: $primary;
+				}
+
+				h1 {
+					font-size: 2.5rem !important;
+				}
+			}
+
+			.aboutchef__body {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-gap: 2.5rem;
+			}
+		}
+	}
+}

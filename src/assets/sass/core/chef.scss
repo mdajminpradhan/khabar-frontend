@@ -1,0 +1,54 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// chef styles starts here
+
+.chef {
+    border: 1px solid $border;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .chef__image {
+        position: relative;
+        img {
+            width: 100%;
+        }
+
+        button {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: .6rem 1.75rem;
+            font-weight: 500;
+            font-size: 1.35rem;
+        }
+    }
+
+    .chef__intro {
+        padding: 2rem;
+        text-align: center;
+
+        h3 {
+            text-transform: uppercase;
+            color: $black;
+            font-weight: 600;
+        }
+
+        p {
+            color: $gray;
+            margin: 1rem 0;
+        }
+
+        .chef__introSocial {
+            svg {
+                margin: 0 .25rem;
+                font-size: .9rem;
+                color: gray;
+            }
+        }
+    }
+}
