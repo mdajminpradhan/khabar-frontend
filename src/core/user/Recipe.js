@@ -12,7 +12,7 @@ const Recipe = ({ review = 'false', category = 'false', content = "false", conte
 				</div>
 				<div className="recipe__bodyRight">
 					<h4>BBQ chicken breast</h4>
-					{review == 'true' ? (
+					{review === 'true' ? (
 						<div className="review">
 							<FaStar />
 							<FaStar />
@@ -21,7 +21,7 @@ const Recipe = ({ review = 'false', category = 'false', content = "false", conte
 							<FaRegStar />
 						</div>
 					) : null}
-					{category == 'true' ? <small>Pasta</small> : null}
+					{category === 'true' ? <small>Pasta</small> : null}
 					{content ? <p className="content">{contentContext}</p> : null}
 					<p className="price">£8.00</p>
 					<FaShoppingBasket className="basket" />

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/sass/core/cards.scss';
 import CardImage from '../../assets/images/homepage/card/card.png';
-import CardImageTwo from '../../assets/images/homepage/card/card-2.png';
+// import CardImageTwo from '../../assets/images/homepage/card/card-2.png';
 import CardImageThree from '../../assets/images/homepage/card/card-3.png';
 import { Link } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ const Cards = () => {
 					</Link>
 				</div>
                 
-				<img src={CardImage} alt="card image" />
+				<img src={CardImage} alt="card" />
 			</div>
 			<div className="card">
 				<div>
@@ -36,7 +36,7 @@ const Cards = () => {
 					</Link>
 				</div>
                 
-				<img src={CardImageThree} alt="card image" />
+				<img src={CardImageThree} alt="card" />
 			</div>
 			<div className="card">
 				<div>
@@ -51,7 +51,7 @@ const Cards = () => {
 					</Link>
 				</div>
                 
-				<img src={CardImageThree} alt="card image" />
+				<img src={CardImageThree} alt="card" />
 			</div>
 		</div>
 	);

@@ -1,0 +1,75 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// products styles starts from here
+
+.productpage {
+	.container {
+		display: grid;
+		grid-template-columns: 1fr .4fr;
+        grid-gap: 2.5rem;
+
+		.products__leftheader {
+			@include flexBetweenCenter;
+			margin-bottom: 2.5rem;
+
+			small {
+				color: $gray;
+			}
+
+			div {
+				select {
+					background: $blogbackground;
+					border: none;
+					outline: none;
+					padding: .9rem 1.2rem;
+					border-radius: 5px;
+					font-size: .8rem;
+				}
+			}
+		}
+
+		.products__left {
+			.products__leftProducts {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-gap: 2rem;
+			}
+		}
+
+		.products__right {
+			h3 {
+				font-size: 1.2rem !important;
+				font-weight: 700;
+				margin-bottom: 1.5rem;
+			}
+
+			.product__rightFilterBySize {
+				
+				margin-top: 3rem;
+
+
+				ul {
+					li {
+						list-style: none;
+						display: inline-block;
+						background: #d1d1d138;
+						margin: 0 .25rem;
+						padding: 0.25rem .75rem;
+						border-radius: 5px;
+						cursor: pointer;
+					}
+				}
+			}
+
+			.product__rightBestDeals {
+				margin-top: 3rem;
+
+				
+			}
+		}
+	}
+}

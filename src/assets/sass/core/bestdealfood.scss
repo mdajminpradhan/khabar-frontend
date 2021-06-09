@@ -1,0 +1,45 @@
+// mixins imported here
+@import '../mixins';
+
+// variables imported here
+@import '../variable';
+
+// best deal food styles starts from here
+
+.bestdealfood {
+    display: grid;
+    grid-template-columns: .4fr 1fr;
+    grid-gap: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid #d1d1d150;
+    border-radius: 25px;
+    padding: .5rem;
+    
+    .bestdealfood__thumbnail {
+        background: #d1d1d136;
+        border-radius: 25px;
+
+        img {
+            width: 100%;
+
+        }
+    }
+
+    .bestdealfood__content {
+        .review {
+            color: $primary;
+            font-size: .85rem;
+            margin-bottom: .5rem;
+        }
+
+        h4 {
+            font-size: 1rem !important;
+        }
+
+        p {
+            color: $primary;
+            font-weight: 700;
+            margin-top: .5rem;
+        }
+    }
+}

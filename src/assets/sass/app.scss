@@ -75,6 +75,24 @@ button:hover {
 	background: #ffbc12;
 }
 
+.primary, .success, .danger {
+	font-size: .75rem;
+	background: dodgerblue;
+	color: white;
+	padding: .2rem .55rem;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.success {
+	background: rgb(0, 255, 170);
+	color: black;
+}
+
+.danger {
+	background: rgb(255, 119, 119);
+}
+
 // global styles ends here
 
 // responsive screen starts here

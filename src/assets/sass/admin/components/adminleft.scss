@@ -1,0 +1,119 @@
+// mixins imported here
+@import '../../mixins';
+
+// variables imported here
+@import '../../variable';
+
+// adminleft styles starts here
+
+.adminleft {
+	@include flexBetweenCenter;
+	align-items: unset !important;
+
+	flex-direction: column;
+	background: white;
+	height: 100vh;
+
+	.adminleft__top {
+		.adminleft__logo {
+			margin-top: 2rem;
+			margin-bottom: 3rem;
+			text-align: center;
+
+			img {
+				width: 35%;
+				margin: auto;
+			}
+		}
+
+		.adminleft__menu {
+			ul {
+				li {
+					a {
+						display: grid;
+						grid-template-columns: auto 1fr;
+						align-items: center;
+
+						color: $gray;
+						padding: .5rem 0;
+						padding-left: 1.35rem;
+						margin: 1rem 0;
+						font-size: .9rem;
+						font-weight: 500;
+						transition: all .5s;
+						position: relative;
+
+						&:hover::before {
+							content: '';
+							position: absolute;
+							top: 0;
+							left: 0;
+							height: 100%;
+							width: 5px;
+							background: $primary;
+							border-top-right-radius: 5px;
+							border-bottom-right-radius: 5px;
+						}
+
+						&:hover {
+							span {
+								color: rgba(21, 22, 22, 0.75) !important;
+							}
+						}
+
+						svg {
+							margin-right: .5rem;
+							font-size: 1.25rem !important;
+							color: rgba(0, 0, 0, 0.637);
+						}
+					}
+					.active {
+						position: relative;
+
+						&:before {
+							content: '';
+							position: absolute;
+							top: 0;
+							left: 0;
+							height: 100%;
+							width: 5px;
+							background: $primary;
+							border-top-right-radius: 5px;
+							border-bottom-right-radius: 5px;
+						}
+
+						span {
+							color: rgba(21, 22, 22, 0.75) !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.adminleft__bottom {
+
+        padding: 3rem 2rem;
+        text-align: center;
+
+		a {
+			@include flexAlignCenter;
+
+            background: white;
+            box-shadow: 0 0px 15px 0 rgba(135, 207, 235, 0.445);
+            border-radius: 10px;
+            padding: .5rem 1rem;
+
+            span {
+                font-size: .9rem;
+                font-weight: 500;
+                margin-right: .5rem;
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            svg {
+                color: dodgerblue;
+            }
+		}
+	}
+}

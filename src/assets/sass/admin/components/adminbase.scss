@@ -1,0 +1,55 @@
+// mixins imported here
+@import '../../mixins';
+
+// variables imported here
+@import '../../variable';
+
+// adminbase styles starts here
+
+.adminbase {
+    display: grid;
+    grid-template-columns: .2fr 1fr;
+    background: #d1d1d169;
+
+
+    .adminbase__right {
+        .adminbase__rightTop {
+            background: white;
+            display: grid;
+            grid-template-columns: 1fr .5fr;
+            align-items: center;
+            padding: 1rem 2rem;
+
+            .adminbase__rightTopSearch {
+                form {
+                    @include flexBetweenCenter;
+
+                    input {
+                        flex: 1;
+                        font-size: .95rem !important;
+                        border: none;
+                        outline: none;
+                        width: 100%;
+                    }
+                }
+            }
+
+            .adminbase__rightTopAdmin {
+                @include flexAlignCenter;
+
+                justify-content: end;
+
+                span {
+                    font-size: 1.05rem;
+                    font-weight: 500;
+                }
+
+                a {
+                    font-size: .85rem;
+                    color: black;
+                    margin-left: .5rem;
+                }
+            }
+        }
+    }
+}

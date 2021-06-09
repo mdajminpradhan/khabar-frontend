@@ -11,48 +11,6 @@
 		margin-bottom: 2rem;
 	}
 
-	.sidebar__categories {
-		border: 1px solid $border;
-		border-radius: 15px;
-		padding: .75rem;
-		margin-bottom: 3rem;
-
-
-		h3 {
-			font-size: 1.3rem !important;
-			padding: .5rem 0;
-			margin-left: 1rem;
-			margin-bottom: .25rem;
-		}
-
-		ul {
-			background: $blogbackground;
-			border-radius: 15px;
-			padding: .1rem 1.5rem;
-
-			li {
-				@include flexBetweenCenter;
-				margin: 1rem 0;
-				color: $gray;
-				cursor: pointer;
-
-				&:hover div {
-					color: $primary;
-				}
-
-				div {
-					@include flexAlignCenter;
-				transition: all .5s;
-
-
-					svg {
-						margin-right: .5rem;
-						font-size: 1.3rem;
-					}
-				}
-			}
-		}
-	}
 
 	.sidebar__recentPosts {
 		h3 {

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../assets/sass/core/sidebarcategories.scss'
 import { GiHamburger } from "react-icons/gi";
 
 const SidebarCategories = () => {

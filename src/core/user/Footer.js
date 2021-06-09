@@ -3,7 +3,7 @@ import '../../assets/sass/core/footer.scss';
 import CardOne from '../../assets/images/homepage/footer/1.png';
 import CardTwo from '../../assets/images/homepage/footer/2.png';
 import CardThree from '../../assets/images/homepage/footer/3.png';
-import CardFour from '../../assets/images/homepage/footer/4.png';
+// import CardFour from '../../assets/images/homepage/footer/4.png';
 import CardFive from '../../assets/images/homepage/footer/5.png';
 import CardSix from '../../assets/images/homepage/footer/6.png';
 
