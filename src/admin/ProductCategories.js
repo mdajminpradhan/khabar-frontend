@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { HiPencil } from 'react-icons/hi';
 import { AiOutlineDelete } from 'react-icons/ai';
 
-const Categories = () => {
+const ProductCategories = () => {
 	return (
 		<AdminBase>
 			<div className="admincategories">
 				<div className="container">
 					<div className="categories__header">
 						<span>All categories</span>
-						<Link to="/admin/category/post/new" className="primary">
+						<Link to="/admin/category/product/new" className="primary">
 							Add New
 						</Link>
 					</div>
@@ -27,7 +27,7 @@ const Categories = () => {
 								<div>01</div>
 								<div>Burger</div>
 								<div className="actions">
-									<Link to="/admin/category/post/update">
+									<Link to="/admin/category/product/update">
 										<HiPencil />
 									</Link>
 									<AiOutlineDelete />
@@ -41,4 +41,4 @@ const Categories = () => {
 	);
 };
 
-export default Categories;
+export default ProductCategories;

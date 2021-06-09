@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/sass/admin/pages/createAndUpdatecategory.scss';
 import AdminBase from '../core/admin/AdminBase';
 
-function NewCategory() {
+function NewProductCategory() {
 	return (
 		<AdminBase>
 			<div className="newcategory">
@@ -19,4 +19,4 @@ function NewCategory() {
 	);
 }
 
-export default NewCategory;
+export default NewProductCategory;

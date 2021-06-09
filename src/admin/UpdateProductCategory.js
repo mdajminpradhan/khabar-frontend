@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/sass/admin/pages/createAndUpdatecategory.scss';
 import AdminBase from '../core/admin/AdminBase';
 
-function NewCategory() {
+function UpdateProductCategory() {
 	return (
 		<AdminBase>
 			<div className="newcategory">
@@ -11,7 +11,7 @@ function NewCategory() {
 						<label htmlFor="cate">Category title</label>
 						<input type="text" id="cate" required />
 
-						<input type="submit" className="primary" value="Add Category" />
+						<input type="submit" className="primary" value="Update Category" />
 					</form>
 				</div>
 			</div>
@@ -19,4 +19,4 @@ function NewCategory() {
 	);
 }
 
-export default NewCategory;
+export default UpdateProductCategory;

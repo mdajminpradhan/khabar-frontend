@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/sass/admin/pages/newcategory.scss';
+import '../assets/sass/admin/pages/createAndUpdatecategory.scss';
 import AdminBase from '../core/admin/AdminBase';
 
 function UpdateCategory() {

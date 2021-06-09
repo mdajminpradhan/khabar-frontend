@@ -33,13 +33,17 @@ const AdminLeft = () => {
 								<FcSurvey />
 								<span>Posts</span>
 							</Link>
-							<Link to="/admin/categories" className={`${currentTab(history, '/admin/categories')}`}>
+							<Link to="/admin/categories/post" className={`${currentTab(history, '/admin/categories/post')}`}>
 								<FcViewDetails />
-								<span>Categories</span>
+								<span>Post Categories</span>
 							</Link>
 							<Link to="/admin/products" className={`${currentTab(history, '/admin/products')}`}>
 								<FcPaid />
 								<span>Products</span>
+							</Link>
+							<Link to="/admin/categories/product" className={`${currentTab(history, '/admin/categories/product')}`}>
+								<FcViewDetails />
+								<span>Product Categories</span>
 							</Link>
 						</li>
 					</ul>

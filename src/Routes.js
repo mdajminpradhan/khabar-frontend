@@ -17,6 +17,9 @@ import UpdateProduct from './admin/UpdateProduct'
 import Categories from './admin/Categories'
 import NewCategory from './admin/NewCategory'
 import UpdateCategory from './admin/UpdateCategory'
+import ProductCategories from './admin/ProductCategories'
+import NewProductCategory from './admin/NewProductCategory'
+import UpdateProductCategory from './admin/UpdateProductCategory'
 
 const Routes = () => {
   return (
@@ -24,9 +27,12 @@ const Routes = () => {
       <Switch>
 
         {/* admin route */}
-        <Route path="/admin/category/update" exact component={UpdateCategory} />
-        <Route path="/admin/category/new" exact component={NewCategory} />
-        <Route path="/admin/categories" exact component={Categories} />
+        <Route path="/admin/category/product/update" exact component={UpdateProductCategory} />
+        <Route path="/admin/category/product/new" exact component={NewProductCategory} />
+        <Route path="/admin/categories/product" exact component={ProductCategories} />
+        <Route path="/admin/category/post/update" exact component={UpdateCategory} />
+        <Route path="/admin/category/post/new" exact component={NewCategory} />
+        <Route path="/admin/categories/post" exact component={Categories} />
         <Route path="/admin/product/update" exact component={UpdateProduct} />
         <Route path="/admin/product/new" exact component={NewProduct} />
         <Route path="/admin/products" exact component={AdminProducts} />
