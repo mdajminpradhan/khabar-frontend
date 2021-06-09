@@ -1,0 +1,13 @@
+// mixins imported here
+@import '../../mixins';
+
+// variables imported here
+@import '../../variable';
+
+// updateproduct styles starts here
+
+.updateproduct {
+	.container {
+		padding: 2rem 1rem;
+	}
+}

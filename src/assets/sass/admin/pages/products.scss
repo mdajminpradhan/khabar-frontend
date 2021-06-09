@@ -1,0 +1,29 @@
+// mixins imported here
+@import '../../mixins';
+
+// variables imported here
+@import '../../variable';
+
+// products styles starts here
+
+.adminproducts {
+	.container {
+		padding: 2rem 1rem;
+
+		.adminproducts__header {
+			margin-bottom: 2rem;
+
+			span {
+				font-size: 1.25rem;
+				font-weight: 500;
+				margin-right: 1rem;
+			}
+		}
+
+		.adminproducts__body {
+			background: white;
+			border-radius: 10px;
+			padding: 1rem;
+		}
+	}
+}
