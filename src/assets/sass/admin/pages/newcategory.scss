@@ -1,0 +1,36 @@
+// mixins imported here
+@import '../../mixins';
+
+// variables imported here
+@import '../../variable';
+
+// newcategory styles starts here
+
+.newcategory {
+    margin-top: 3rem;
+
+	.container {
+		background: white;
+		border-radius: 10px;
+		padding: 1rem;
+        width: 70%;
+
+		form {
+			label {
+				display: block;
+                margin-bottom: 1rem;
+			}
+
+			input {
+				border: 1px solid #d1d1d148;
+				outline: none;
+				font-size: .95rem;
+				padding: .5rem;
+				border-radius: 10px;
+				margin-bottom: 1.5rem;
+				width: 100%;
+				box-shadow: 0 5px 20px 0 rgba(135, 207, 235, 0.05);
+			}
+		}
+	}
+}
