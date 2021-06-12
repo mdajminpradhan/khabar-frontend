@@ -37,7 +37,7 @@
             .adminbase__rightTopAdmin {
                 @include flexAlignCenter;
 
-                justify-content: end;
+                justify-content: flex-end;
 
                 span {
                     font-size: 1.05rem;

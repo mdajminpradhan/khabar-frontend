@@ -3,7 +3,7 @@ import '../../assets/sass/admin/components/adminleft.scss';
 import logo from '../../assets/images/global/khabar.png';
 import { FiExternalLink } from 'react-icons/fi';
 import { FcSurvey, FcViewDetails, FcPaid, FcNews } from 'react-icons/fc';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const currentTab = (history, path) => {
 	if (history.location.pathname === path) {
@@ -13,9 +13,7 @@ const currentTab = (history, path) => {
 	}
 };
 
-const AdminLeft = () => {
-	const history = useHistory();
-
+const AdminLeft = ({ history }) => {
 	return (
 		<div className="adminleft">
 			<div className="adminleft__top">
@@ -33,7 +31,10 @@ const AdminLeft = () => {
 								<FcSurvey />
 								<span>Posts</span>
 							</Link>
-							<Link to="/admin/categories/post" className={`${currentTab(history, '/admin/categories/post')}`}>
+							<Link
+								to="/admin/categories/post"
+								className={`${currentTab(history, '/admin/categories/post')}`}
+							>
 								<FcViewDetails />
 								<span>Post Categories</span>
 							</Link>
@@ -41,7 +42,10 @@ const AdminLeft = () => {
 								<FcPaid />
 								<span>Products</span>
 							</Link>
-							<Link to="/admin/categories/product" className={`${currentTab(history, '/admin/categories/product')}`}>
+							<Link
+								to="/admin/categories/product"
+								className={`${currentTab(history, '/admin/categories/product')}`}
+							>
 								<FcViewDetails />
 								<span>Product Categories</span>
 							</Link>
@@ -59,4 +63,4 @@ const AdminLeft = () => {
 	);
 };
 
-export default AdminLeft;
+export default withRouter(AdminLeft);

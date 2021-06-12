@@ -49,7 +49,7 @@ const Header = () => {
 					<div className="search">
 						<FiSearch />
 					</div>
-					<Link to="/loginaccount" className="user">
+					<Link to="/loginaccount" title="Click to login to your account" className="user">
 						<FiUser />
 					</Link>
 					<Link to="/wishlist" className="wishlist">

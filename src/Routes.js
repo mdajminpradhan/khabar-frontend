@@ -1,5 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+// user routes
 import Home from './user/Home'
 import About from './user/About'
 import Menu from './user/Menu'
@@ -7,6 +9,9 @@ import Contact from './user/Contact'
 import Blog from './user/Blog'
 import Fullpost from './user/Fullpost'
 import Products from './user/Products'
+import UserDashboard from './user/UserDashboard'
+
+// admin routes
 import Admin from './core/admin/AdminBase'
 import AdminPosts from './admin/Posts'
 import NewPost from './admin/NewPost'
@@ -20,6 +25,10 @@ import UpdateCategory from './admin/UpdateCategory'
 import ProductCategories from './admin/ProductCategories'
 import NewProductCategory from './admin/NewProductCategory'
 import UpdateProductCategory from './admin/UpdateProductCategory'
+
+// auth routes
+import Login from './auth/Login'
+import Createaccount from './auth/Createaccount'
 
 const Routes = () => {
   return (
@@ -42,6 +51,9 @@ const Routes = () => {
         <Route path="/admin" exact component={Admin} />
 
         {/* user route */}
+        <Route path="/user/dashboard" exact component={UserDashboard} />
+        <Route path="/createaccount" exact component={Createaccount} />
+        <Route path="/loginaccount" exact component={Login} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/products" exact component={Products} />
         <Route path="/post" exact component={Fullpost} />

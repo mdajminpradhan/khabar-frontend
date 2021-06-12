@@ -6,6 +6,7 @@ import { HiPencil } from 'react-icons/hi';
 import { AiOutlineDelete } from 'react-icons/ai';
 
 const Categories = () => {
+
 	return (
 		<AdminBase>
 			<div className="admincategories">

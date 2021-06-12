@@ -54,6 +54,7 @@ const Contact = () => {
 								height="100%"
 								style={{ border: 0 }}
 								allowfullscreen=""
+								title="khabar map"
 								loading="lazy"
 							/>
 						</div>

@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './assets/sass/app.scss';
 import Routes from './Routes';
 import reportWebVitals from './reportWebVitals';
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.REACT_APP_API;
+// axios.defaults.headers['Accept'] = 'application/json'
 
 ReactDOM.render(
   <React.StrictMode>
