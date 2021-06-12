@@ -30,31 +30,34 @@ import UpdateProductCategory from './admin/UpdateProductCategory'
 import Login from './auth/Login'
 import Createaccount from './auth/Createaccount'
 
+// Admin route
+import AdminRoute from './auth/helper/AdminRoutes'
+
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
 
         {/* admin route */}
-        <Route path="/admin/category/product/update" exact component={UpdateProductCategory} />
-        <Route path="/admin/category/product/new" exact component={NewProductCategory} />
-        <Route path="/admin/categories/product" exact component={ProductCategories} />
-        <Route path="/admin/category/post/update" exact component={UpdateCategory} />
-        <Route path="/admin/category/post/new" exact component={NewCategory} />
-        <Route path="/admin/categories/post" exact component={Categories} />
-        <Route path="/admin/product/update" exact component={UpdateProduct} />
-        <Route path="/admin/product/new" exact component={NewProduct} />
-        <Route path="/admin/products" exact component={AdminProducts} />
-        <Route path="/admin/post/update" exact component={UpdatePost} />
-        <Route path="/admin/post/new" exact component={NewPost} />
-        <Route path="/admin/posts" exact component={AdminPosts} />
-        <Route path="/admin" exact component={Admin} />
+        <AdminRoute path="/admin/category/product/update" exact component={UpdateProductCategory} />
+        <AdminRoute path="/admin/category/product/new" exact component={NewProductCategory} />
+        <AdminRoute path="/admin/categories/product" exact component={ProductCategories} />
+        <AdminRoute path="/admin/category/post/update" exact component={UpdateCategory} />
+        <AdminRoute path="/admin/category/post/new" exact component={NewCategory} />
+        <AdminRoute path="/admin/categories/post" exact component={Categories} />
+        <AdminRoute path="/admin/product/update" exact component={UpdateProduct} />
+        <AdminRoute path="/admin/product/new" exact component={NewProduct} />
+        <AdminRoute path="/admin/products" exact component={AdminProducts} />
+        <AdminRoute path="/admin/post/update" exact component={UpdatePost} />
+        <AdminRoute path="/admin/post/new" exact component={NewPost} />
+        <AdminRoute path="/admin/posts" exact component={AdminPosts} />
+        <AdminRoute path="/admin" exact component={Admin} />
 
         {/* user route */}
         <Route path="/user/dashboard" exact component={UserDashboard} />
         <Route path="/createaccount" exact component={Createaccount} />
         <Route path="/loginaccount" exact component={Login} />
-        <Route path="/contact" exact component={Contact} />
+        <AdminRoute path="/contact" exact component={Contact} />
         <Route path="/products" exact component={Products} />
         <Route path="/post" exact component={Fullpost} />
         <Route path="/blog" exact component={Blog} />

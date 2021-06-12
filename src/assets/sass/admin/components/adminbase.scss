@@ -39,15 +39,16 @@
 
                 justify-content: flex-end;
 
-                span {
+                .user {
                     font-size: 1.05rem;
                     font-weight: 500;
                 }
 
-                a {
+                .logout {
                     font-size: .85rem;
                     color: black;
                     margin-left: .5rem;
+                    cursor: pointer;
                 }
             }
         }

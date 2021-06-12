@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Table from '../core/admin/Table';
 
 const Posts = () => {
+
 	return (
 		<AdminBase>
 			<div className="posts">

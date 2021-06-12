@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import '../assets/sass/auth/login.scss';
 import Base from '../core/user/Base';
-import { authenticate, loginAccount, isAuthenticated } from './helper/apicall';
+import { authenticate, loginAccount, isAuthenticated, verifyToken } from './helper/apicall';
 import cogoToast from 'cogo-toast';
 
 const Login = () => {
@@ -42,7 +42,7 @@ const Login = () => {
 					});
 
 					cogoToast.loading('Loging in to your account...').then(() => {
-						// cogoToast.success('Your account was created successfully...', { position: 'top-right' });
+						cogoToast.success('Your are logged in successfully...', { position: 'top-center' });
 					});
 				}
 			})
@@ -54,14 +54,13 @@ const Login = () => {
 	const redirectUser = () => {
 		if (didRedirect) {
 			if (user.role == '1') {
-				console.log('yes');
 				return <Redirect to="/admin" />;
 			} else {
 				return <Redirect to="/user/dashboard" />;
 			}
 		}
 
-		if (isAuthenticated()) {
+		if (verifyToken() && isAuthenticated()) {
 			return <Redirect to="/admin" />;
 		}
 	};

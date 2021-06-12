@@ -2,10 +2,13 @@ import React from 'react'
 import '../../assets/sass/admin/components/adminbase.scss'
 import AdminLeft from './AdminLeft'
 import { FiSearch } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { logoutAccount } from '../../auth/helper/apicall';
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import cogoToast from 'cogo-toast';
 
 
-const Admin = ({children}) => {
+const Admin = ({history, children}) => {
+
     return (
         <div className="adminbase">
             <div className="adminbase__left">
@@ -20,8 +23,13 @@ const Admin = ({children}) => {
                         </form>
                     </div>
                     <div className="adminbase__rightTopAdmin">
-                        <span>Mr Pradhan,</span>
-                        <Link to="/">Logout</Link>
+                        <span className='user'>Mr Pradhan,</span>
+                        <span className="logout" onClick={() => {
+                            logoutAccount(() => {
+                                history.push('/loginaccount');
+						        cogoToast.success('Your have logged out successfully...', { position: 'top-right' });
+                            })
+                        }}>Logout</span>
                     </div>
                 </div>
                 {children}
@@ -30,4 +38,4 @@ const Admin = ({children}) => {
     )
 }
 
-export default Admin
+export default withRouter(Admin)
