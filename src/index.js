@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './assets/sass/app.scss';
 import Routes from './Routes';
 import reportWebVitals from './reportWebVitals';
-import axios from 'axios';
+import axios from 'axios'
+
+const token = JSON.parse(localStorage.getItem('jwt'));
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
-// axios.defaults.headers['Accept'] = 'application/json'
+axios.defaults.headers.common['Authorization'] = token ? `Bearer ${token.token}` : '';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 ReactDOM.render(
   <React.StrictMode>

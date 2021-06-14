@@ -32,8 +32,8 @@ const AdminLeft = ({ history }) => {
 								<span>Posts</span>
 							</Link>
 							<Link
-								to="/admin/categories/post"
-								className={`${currentTab(history, '/admin/categories/post')}`}
+								to="/admin/postcategories"
+								className={`${currentTab(history, '/admin/postcategories')}`}
 							>
 								<FcViewDetails />
 								<span>Post Categories</span>
@@ -43,8 +43,8 @@ const AdminLeft = ({ history }) => {
 								<span>Products</span>
 							</Link>
 							<Link
-								to="/admin/categories/product"
-								className={`${currentTab(history, '/admin/categories/product')}`}
+								to="/admin/productcategories"
+								className={`${currentTab(history, '/admin/productcategories')}`}
 							>
 								<FcViewDetails />
 								<span>Product Categories</span>

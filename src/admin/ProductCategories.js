@@ -12,7 +12,7 @@ const ProductCategories = () => {
 				<div className="container">
 					<div className="categories__header">
 						<span>All categories</span>
-						<Link to="/admin/category/product/new" className="primary">
+						<Link to="/admin/productcategory/new" className="primary">
 							Add New
 						</Link>
 					</div>
@@ -27,7 +27,7 @@ const ProductCategories = () => {
 								<div>01</div>
 								<div>Burger</div>
 								<div className="actions">
-									<Link to="/admin/category/product/update">
+									<Link to="/admin/productcategory/update">
 										<HiPencil />
 									</Link>
 									<AiOutlineDelete />

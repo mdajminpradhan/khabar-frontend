@@ -53,7 +53,7 @@ const Login = () => {
 
 	const redirectUser = () => {
 		if (didRedirect) {
-			if (user.role == '1') {
+			if (user.role === '1') {
 				return <Redirect to="/admin" />;
 			} else {
 				return <Redirect to="/user/dashboard" />;

@@ -2,8 +2,17 @@ import React from 'react';
 import '../../assets/sass/admin/components/form.scss';
 import Image from '../../assets/images/blog/recentpost/1.jpg';
 import { IoIosClose } from 'react-icons/io';
+import EditorJS from '@editorjs/editorjs';
 
 function Form() {
+
+	const editor = new EditorJS({
+		/**
+		 * Id of Element that should contain Editor instance
+		 */
+		holder: 'editorjs'
+	  });
+
 	return (
 		<div className="form">
 			<form action="">
