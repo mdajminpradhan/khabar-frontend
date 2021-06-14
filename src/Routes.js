@@ -38,7 +38,7 @@ const Routes = () => {
 		<BrowserRouter>
 			<Switch>
 				{/* admin route */}
-				<AdminRoute path="/admin/productcategory/update" exact component={UpdateProductCategory} />
+				<AdminRoute path="/admin/productcategory/update/:category_id" exact component={UpdateProductCategory} />
 				<AdminRoute path="/admin/productcategory/new" exact component={NewProductCategory} />
 				<AdminRoute path="/admin/productcategories" exact component={ProductCategories} />
 				<AdminRoute path="/admin/postcategory/update/:category_id" exact component={UpdateCategory} />

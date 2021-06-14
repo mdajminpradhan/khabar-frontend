@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import cogoToast from 'cogo-toast';
 import '../assets/sass/admin/pages/createAndUpdatecategory.scss';
+import cogoToast from 'cogo-toast';
 import { isAuthenticated } from '../auth/helper/apicall';
 import AdminBase from '../core/admin/AdminBase';
 import { newCategory } from './helper/apicall';

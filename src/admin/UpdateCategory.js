@@ -5,10 +5,7 @@ import cogoToast from 'cogo-toast';
 import { isAuthenticated } from '../auth/helper/apicall';
 import { get_category_by_id, update_category } from './helper/apicall';
 
-
-
-function UpdateCategory({match, history}) {
-
+function UpdateCategory({ match, history }) {
 	const [ category, setCategory ] = useState();
 
 	// getting logged in user details from localhost
@@ -36,14 +33,12 @@ function UpdateCategory({match, history}) {
 					});
 
 					setCategory('');
-
 				}
 			})
 			.catch((error) => {
 				cogoToast.error(error, { position: 'top-right' });
 			});
 	};
-
 
 	// get categories from server
 	const preload_category = (cateid) => {
@@ -65,10 +60,9 @@ function UpdateCategory({match, history}) {
 		<AdminBase>
 			<div className="newcategory">
 				<div className="container">
-				<form onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmit}>
 						<label htmlFor="cate">Category title</label>
 						<input type="text" id="cate" value={category} onChange={handleChange} required />
-
 
 						<input type="submit" className="primary" value="Update Category" />
 					</form>

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/sass/admin/pages/categories.scss';
 import AdminBase from '../core/admin/AdminBase';
 import { Link } from 'react-router-dom';
