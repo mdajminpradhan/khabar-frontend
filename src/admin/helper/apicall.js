@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { isAuthenticated } from '../../auth/helper/apicall';
+
+const { user } = isAuthenticated();
 
 // creating post category
 export const newCategory = (cate, userId) => {
@@ -11,13 +14,13 @@ export const newCategory = (cate, userId) => {
 };
 
 // get  post categories
-export const get_all_categories = () => {
-	return axios
-		.get('/postcategories')
-		.then((response) => {
-			return response.data;
-		})
-		.catch((error) => error);
+export const get_all_categories = async () => {
+	try {
+		const response = await axios.get('/postcategories');
+		return response.data;
+	} catch (error) {
+		return error;
+	}
 };
 
 // get post category by id
@@ -102,6 +105,76 @@ export const update_product_category = (cate, cate_id, profile_id) => {
 export const delete_product_category = (cateid, profileid) => {
 	return axios
 		.delete(`/category/delete/${cateid}/${profileid}`)
+		.then((response) => {
+			return response;
+		})
+		.catch((error) => error);
+};
+
+// creating post
+export const createPost = (title, postcategories, description, tags, image) => {
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('category', JSON.stringify(postcategories));
+	formdata.append('author', user._id);
+	formdata.append('description', description);
+	formdata.append('tags', JSON.stringify(tags));
+	formdata.append('picture', image);
+
+	return axios
+		.post(`/post/create/${user._id}`, formdata)
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data;
+		});
+};
+
+// get all posts
+export const get_all_posts = () => {
+	return axios
+		.get('/posts')
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => error);
+};
+
+// get post data by id
+export const get_post_by_id = async (postid) => {
+	try {
+		const response = await axios.get(`/post/${postid}`);
+		return response.data;
+	} catch (error) {
+		return error.response.data;
+	}
+};
+
+// creating post
+export const updatePost = (title, postcategories, description, tags, image, postid) => {
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('category', JSON.stringify(postcategories));
+	formdata.append('author', user._id);
+	formdata.append('description', description);
+	formdata.append('tags', JSON.stringify(tags));
+	formdata.append('picture', image);
+
+	return axios
+		.put(`/post/update/${postid}/${user._id}`, formdata)
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data;
+		});
+};
+
+// delete posts
+export const delete_post = (postid, profileid) => {
+	return axios
+		.delete(`/post/delete/${postid}/${profileid}`)
 		.then((response) => {
 			return response;
 		})

@@ -1,26 +1,114 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../../assets/sass/admin/components/form.scss';
 import Image from '../../assets/images/blog/recentpost/1.jpg';
 import { IoIosClose } from 'react-icons/io';
-import EditorJS from '@editorjs/editorjs';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { isAuthenticated } from '../../auth/helper/apicall';
+import cogoToast from 'cogo-toast';
 
-function Form() {
+function Form({ fetchedCategories, sendDataToPapa, getCreatePostAction, dataById = 'undefined' }) {
+	const [ details, setDetails ] = useState({
+		title: '',
+		description: 'post description',
+		tag: '',
+		image: ''
+	});
+	const [ categories, setCategories ] = useState([]);
+	const [ checked, setChecked ] = useState(false);
+	const inputCheck = useRef();
 
-	const editor = new EditorJS({
-		/**
-		 * Id of Element that should contain Editor instance
-		 */
-		holder: 'editorjs'
-	  });
+	// destrucring state
+	const { title, description, tag, image } = details;
+
+	// getting logged in user data
+	const { user } = isAuthenticated();
+
+	useEffect(
+		() => {
+			if (dataById !== 'undefined' && Object.keys(dataById).length > 1) {
+				setDetails({
+					...details,
+					title: dataById.title
+				});
+
+				setTags(dataById.tags);
+				setCategories(dataById.category);
+			}
+		},
+		[ dataById ]
+	);
+
+	const [ tags, setTags ] = useState([ 'python' ]);
+
+	// marking category as checked based on given id from loop
+	const checkChecked = (cateid) => {
+		if (dataById !== 'undefined' && Object.keys(dataById).length > 1) {
+			if(categories.includes(cateid)){
+				return true
+			}
+		}
+	};
+
+	// handlechange input
+	const handleChange = (name) => (event) => {
+		const value = name === 'image' ? event.target.files[0] : event.target.value;
+		setDetails({ ...details, [name]: value });
+	};
+
+	// handlechange tag
+	const handleChangeTag = (event) => {
+		setDetails({ ...details, tag: event.target.value });
+	};
+
+	// creating tag
+	const handleTag = (event) => {
+		if (event.key === 'Enter') {
+			setTags([ ...tags, tag ]);
+			setDetails({ ...details, tag: '' });
+		}
+	};
+
+	// removing tags
+	const removeTag = (tagindex) => {
+		setTags(tags.filter((tag, index) => index !== tagindex));
+	};
+
+	// handling categories
+	const handleCategory = (event) => {
+		const value = event.target.value;
+		if (categories.includes(value)) {
+			const filter = categories.filter((cate) => cate !== value);
+			setCategories(filter);
+		} else {
+			setCategories([ ...categories, value ]);
+		}
+	};
+
+	// let userid = user._id;
+
+	// handle submit
+	const handleSubmit = () => {
+		sendDataToPapa(title, categories, description, tags, image);
+		getCreatePostAction(true);
+	};
 
 	return (
 		<div className="form">
 			<form action="">
 				<div className="form__left">
 					<label htmlFor="title">Post title</label>
-					<input type="text" id="title" required />
+					<input type="text" id="title" value={title} onChange={handleChange('title')} required />
 					<label htmlFor="description">Post description</label>
-					<textarea name="" id="description" cols="30" rows="10" required />
+					<CKEditor
+						editor={ClassicEditor}
+						data={dataById ? dataById.description : ''}
+						onChange={(event, editor) => {
+							const data = editor.getData();
+							// console.log({ event, editor, data });
+							setDetails({ ...details, description: data });
+						}}
+					/>
 				</div>
 				<div className="form__right">
 					<div className="publish">
@@ -30,80 +118,58 @@ function Form() {
 						<div className="devider" />
 
 						<div className="publishh">
-							<span className="primary">Publish</span>
+							<span className="primary" onClick={handleSubmit}>
+								{dataById !== 'undefined' ? 'Update' : 'Publish'}
+							</span>
 						</div>
 					</div>
 					<div className="categories">
 						<h5>Categories</h5>
-						<div className="category">
-							<input type="checkbox" name="" id="catone" />
-							<label htmlFor="catone">Technology</label>
-						</div>
-						<div className="category">
-							<input type="checkbox" name="" id="cattwo" />
-							<label htmlFor="cattwo">Travel</label>
-						</div>
-						<div className="category">
-							<input type="checkbox" name="" id="catthree" />
-							<label htmlFor="catthree">Food</label>
-						</div>
-						<div className="category">
-							<input type="checkbox" name="" id="catfour" />
-							<label htmlFor="catfour">Burger</label>
-						</div>
-						<div className="category">
-							<input type="checkbox" name="" id="catfive" />
-							<label htmlFor="catfive">Pizza</label>
-						</div>
-						<div className="category">
-							<input type="checkbox" name="" id="catsix" />
-							<label htmlFor="catsix">Cheez</label>
-						</div>
+
+						{fetchedCategories.map((cate, index) => (
+							<div className="category" key={index}>
+								<input
+									ref={inputCheck}
+									type="checkbox"
+									value={cate._id}
+									onChange={handleCategory}
+									checked={checkChecked(cate._id)}
+									name=""
+									id="catone"
+								/>
+								<label htmlFor="catone">{cate.title}</label>
+							</div>
+						))}
 					</div>
 					<div className="tagss">
 						<h5>Tags</h5>
 
 						<ul>
-							<li>
-								<div>
-									<span>tag</span>
-									<IoIosClose />
-								</div>
-							</li>
-							<li>
-								<div>
-									<span>tag</span>
-									<IoIosClose />
-								</div>
-							</li>
-							<li>
-								<div>
-									<span>tag</span>
-									<IoIosClose />
-								</div>
-							</li>
-							<li>
-								<div>
-									<span>tag</span>
-									<IoIosClose />
-								</div>
-							</li>
-							<li>
-								<div>
-									<span>tag</span>
-									<IoIosClose />
-								</div>
-							</li>
+							{tags.map((tag, index) => (
+								<li key={index}>
+									<div>
+										<span>{tag}</span>
+										<IoIosClose onClick={() => removeTag(index)} />
+									</div>
+								</li>
+							))}
 						</ul>
 						<div className="taginput">
-							<input type="text" placeholder="Enter your tags" />
+							<input
+								type="text"
+								value={tag}
+								onChange={handleChangeTag}
+								onKeyPress={handleTag}
+								placeholder="Enter your tags"
+								required
+							/>
 						</div>
 					</div>
 					<div className="thumbnail">
 						<h5>Thumbnail</h5>
 
-						<input type="file" name="" id="" />
-						<img src={Image} alt="" />
+						<input type="file" onChange={handleChange('image')} name="" id="" />
+						{image ? <img src={URL.createObjectURL(image)} alt="" /> : <img src={dataById.picture} />}
 					</div>
 				</div>
 			</form>
