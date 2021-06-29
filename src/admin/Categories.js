@@ -62,6 +62,7 @@ const Categories = () => {
 					<div className="categories__body">
 						<div className="categories__bodyHeader">
 							<div>No.</div>
+							<div>Icon</div>
 							<div>Category</div>
 							<div>Action</div>
 						</div>
@@ -69,6 +70,8 @@ const Categories = () => {
 							{categories.map((cate, index) => (
 								<div key={index} className="categories__bodyBottomCategory">
 									<div>{count++}</div>
+									{console.log(cate)}
+									<div className="cateimage"><img src={cate.icon} /></div>
 									<div>{cate.title}</div>
 									<div className="actions">
 										<Link to={`/admin/postcategory/update/${cate._id}`}>

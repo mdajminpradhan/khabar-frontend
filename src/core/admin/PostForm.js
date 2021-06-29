@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../../assets/sass/admin/components/form.scss';
+import '../../assets/sass/admin/components/postform.scss';
 import Image from '../../assets/images/blog/recentpost/1.jpg';
 import { IoIosClose } from 'react-icons/io';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -15,7 +15,6 @@ function Form({ fetchedCategories, sendDataToPapa, getCreatePostAction, dataById
 		image: ''
 	});
 	const [ categories, setCategories ] = useState([]);
-	const [ checked, setChecked ] = useState(false);
 	const inputCheck = useRef();
 
 	// destrucring state
@@ -39,13 +38,13 @@ function Form({ fetchedCategories, sendDataToPapa, getCreatePostAction, dataById
 		[ dataById ]
 	);
 
-	const [ tags, setTags ] = useState([ 'python' ]);
+	const [ tags, setTags ] = useState([]);
 
 	// marking category as checked based on given id from loop
 	const checkChecked = (cateid) => {
 		if (dataById !== 'undefined' && Object.keys(dataById).length > 1) {
-			if(categories.includes(cateid)){
-				return true
+			if (categories.includes(cateid)) {
+				return true;
 			}
 		}
 	};
@@ -113,7 +112,7 @@ function Form({ fetchedCategories, sendDataToPapa, getCreatePostAction, dataById
 				<div className="form__right">
 					<div className="publish">
 						<div>
-							<span className="publishContext">Publish your post right away</span>
+							<span className="publishContext">Publish your data right away</span>
 						</div>
 						<div className="devider" />
 
@@ -168,8 +167,8 @@ function Form({ fetchedCategories, sendDataToPapa, getCreatePostAction, dataById
 					<div className="thumbnail">
 						<h5>Thumbnail</h5>
 
-						<input type="file" onChange={handleChange('image')} name="" id="" />
-						{image ? <img src={URL.createObjectURL(image)} alt="" /> : <img src={dataById.picture} />}
+						<input type="file" onChange={handleChange('image')} />
+						{image ? <img src={URL.createObjectURL(image)} alt="thumbnail" /> : <img src={dataById.picture} alt="Post thumbnail" />}
 					</div>
 				</div>
 			</form>

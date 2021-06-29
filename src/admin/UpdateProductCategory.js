@@ -5,7 +5,7 @@ import { isAuthenticated } from '../auth/helper/apicall';
 import { get_product_category_by_id, update_product_category } from './helper/apicall';
 import cogoToast from 'cogo-toast';
 
-function UpdateProductCategory({match, history}) {
+function UpdateProductCategory({ match, history }) {
 	const [ category, setCategory ] = useState();
 
 	// getting logged in user details from localhost
@@ -63,6 +63,12 @@ function UpdateProductCategory({match, history}) {
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="cate">Category title</label>
 						<input type="text" id="cate" value={category} onChange={handleChange} required />
+
+						<label htmlFor="image">Category Picture</label>
+						<input type="file" name="" id="image" />
+
+						<label htmlFor="icon">Category Icon</label>
+						<input type="file" name="" id="icon" />
 
 						<input type="submit" className="primary" value="Update Category" />
 					</form>

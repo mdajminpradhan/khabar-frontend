@@ -27,7 +27,7 @@
 
 			.categories__bodyHeader {
 				display: grid;
-				grid-template-columns: .05fr .8fr .15fr;
+				grid-template-columns: .05fr .05fr .75fr .15fr;
 				margin-bottom: 1.5rem;
 
 				div {
@@ -37,13 +37,21 @@
 
 			.categories__bodyBottomCategory {
 				display: grid;
-				grid-template-columns: .05fr .8fr .15fr;
-				align-items: center;
+				grid-template-columns: .05fr .05fr .75fr .15fr;
+				// align-items: center;
 				padding-bottom: .75rem;
 
 				div {
 					color: rgba(128, 128, 128, 0.9);
 					font-weight: 500;
+				}
+
+				.cateimage {
+					width: 20px;
+
+					img {
+						width: 100%;
+					}
 				}
 
 				.actions {

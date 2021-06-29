@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import cogoToast from 'cogo-toast';
 import '../assets/sass/admin/pages/newpost.scss';
 import AdminBase from '../core/admin/AdminBase';
-import Form from '../core/admin/Form';
+import PostForm from '../core/admin/PostForm';
+import cogoToast from 'cogo-toast';
 import { get_all_categories, createPost } from './helper/apicall';
 
 const NewPost = ({ history }) => {
@@ -62,10 +62,10 @@ const NewPost = ({ history }) => {
 		<AdminBase>
 			<div className="newpost">
 				<div className="container">
-					<Form
+					<PostForm
 						fetchedCategories={categories}
 						sendDataToPapa={gettingDataFromChild}
-						getCreatePostAction={getPubLishActionFromChild}
+						getCreateAction={getPubLishActionFromChild}
 					/>
 				</div>
 			</div>

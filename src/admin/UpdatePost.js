@@ -1,8 +1,8 @@
-import cogoToast from 'cogo-toast';
 import React, { useEffect, useState } from 'react';
 import '../assets/sass/admin/pages/newpost.scss';
 import AdminBase from '../core/admin/AdminBase';
-import Form from '../core/admin/Form';
+import PostForm from '../core/admin/PostForm';
+import cogoToast from 'cogo-toast';
 import { get_all_categories, get_post_by_id, updatePost } from './helper/apicall';
 
 const UpdatePost = ({ match, history }) => {
@@ -79,7 +79,7 @@ const UpdatePost = ({ match, history }) => {
 		<AdminBase>
 			<div className="newpost">
 				<div className="container">
-					<Form
+					<PostForm
 						fetchedCategories={categories}
 						sendDataToPapa={gettingDataFromChild}
 						getCreatePostAction={getPubLishActionFromChild}

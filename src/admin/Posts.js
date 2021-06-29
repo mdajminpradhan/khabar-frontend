@@ -50,19 +50,16 @@ const Posts = () => {
 	// get post picture
 	useEffect(
 		() => {
-			// setTimeout(() => {
-				// if (posts.length > 1) {
-					posts.map((post) =>
-						axios
-							.get(`/postpicture/${post._id}`)
-							.then((response) => {
-								// console.log(response);
-								setImage(response.data);
-							})
-							.catch((error) => console.log(error))
-					);
-				// }
-			// }, 1000);
+			posts.map((post) =>
+				axios
+					.post(`/postpicture`, {
+						id: post._id
+					})
+					.then((response) => {
+						setImage(response.data.picture);
+					})
+					.catch((error) => console.log(error))
+			);
 		},
 		[ posts ]
 	);

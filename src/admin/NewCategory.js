@@ -6,21 +6,29 @@ import AdminBase from '../core/admin/AdminBase';
 import { newCategory } from './helper/apicall';
 
 function NewCategory({ history }) {
-	const [ category, setCategory ] = useState();
+	const [ details, setDetails ] = useState({
+		title: '',
+		icon: '',
+		formdata: new FormData()
+	});
+
+	const { title, icon } = details;
 
 	// getting logged in user details from localhost
 	const { user } = isAuthenticated();
 
 	// changing value on user type interaction
-	const handleChange = (event) => {
-		setCategory(event.target.value);
+	const handleChange = (name) => (event) => {
+		const value = name === 'icon' ? event.target.files[0] : event.target.value;
+
+		setDetails({ ...details, [name]: value });
 	};
 
 	// trigger the function on submit
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		newCategory(category, user._id)
+		newCategory(title, icon, user._id)
 			.then((response) => {
 				if (response.error) {
 					cogoToast.error(response.error, { position: 'top-right' });
@@ -32,7 +40,7 @@ function NewCategory({ history }) {
 						history.push('/admin/postcategories');
 					});
 
-					setCategory('');
+					setDetails({ ...details, title: '', icon: '' });
 				}
 			})
 			.catch((error) => {
@@ -46,7 +54,11 @@ function NewCategory({ history }) {
 				<div className="container">
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="cate">Category title</label>
-						<input type="text" id="cate" value={category} onChange={handleChange} required />
+						<input type="text" id="cate" value={title} onChange={handleChange('title')} required />
+
+						<label htmlFor="icon">Category Icon</label>
+						<input type="file" id="icon" onChange={handleChange('icon')} required />
+						{icon ? <img src={URL.createObjectURL(icon)} className="icon" alt="" /> : ''}
 
 						<input type="submit" className="primary" value="Add Category" />
 					</form>

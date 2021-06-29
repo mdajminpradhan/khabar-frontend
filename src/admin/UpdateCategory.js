@@ -6,21 +6,29 @@ import { isAuthenticated } from '../auth/helper/apicall';
 import { get_category_by_id, update_category } from './helper/apicall';
 
 function UpdateCategory({ match, history }) {
-	const [ category, setCategory ] = useState();
+	const [ details, setDetails ] = useState({
+		title: '',
+		icon: '',
+		dbicon: '',
+		formdata: new FormData()
+	});
 
+	const { title, icon, dbicon } = details;
 	// getting logged in user details from localhost
 	const { user } = isAuthenticated();
 
 	// changing value on user type interaction
-	const handleChange = (event) => {
-		setCategory(event.target.value);
+	const handleChange = (name) => (event) => {
+		const value = name === 'icon' ? event.target.files[0] : event.target.value;
+
+		setDetails({ ...details, [name]: value });
 	};
 
 	// trigger the function on submit
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		update_category(category, match.params.category_id, user._id)
+		update_category(title, icon, match.params.category_id, user._id)
 			.then((response) => {
 				if (response.error) {
 					cogoToast.error(response.error, { position: 'top-right' });
@@ -32,7 +40,7 @@ function UpdateCategory({ match, history }) {
 						history.push('/admin/postcategories');
 					});
 
-					setCategory('');
+					setDetails({ ...details, title: '', icon: '' });
 				}
 			})
 			.catch((error) => {
@@ -44,7 +52,12 @@ function UpdateCategory({ match, history }) {
 	const preload_category = (cateid) => {
 		get_category_by_id(cateid)
 			.then((response) => {
-				setCategory(response.title);
+				setDetails({
+					...details,
+					title: response.title,
+					dbimage: response.image,
+					dbicon: response.icon
+				});
 			})
 			.catch((error) => {
 				cogoToast.error(error, { position: 'top-right' });
@@ -62,7 +75,15 @@ function UpdateCategory({ match, history }) {
 				<div className="container">
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="cate">Category title</label>
-						<input type="text" id="cate" value={category} onChange={handleChange} required />
+						<input type="text" id="cate" value={title} onChange={handleChange('title')} required />
+
+						<label htmlFor="icon">Category Icon</label>
+						<input type="file" id="icon" onChange={handleChange('icon')} />
+						{icon ? (
+							<img src={URL.createObjectURL(icon)} className="icon" alt="" />
+						) : (
+							<img src={dbicon} className="icon" alt="" />
+						)}
 
 						<input type="submit" className="primary" value="Update Category" />
 					</form>

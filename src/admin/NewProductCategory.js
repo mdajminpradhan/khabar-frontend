@@ -6,21 +6,38 @@ import { isAuthenticated } from '../auth/helper/apicall';
 import { newProductCategory } from './helper/apicall';
 
 const NewProductCategory = ({ history }) => {
-	const [ category, setCategory ] = useState();
+	const [ details, setDetails ] = useState({
+		title: '',
+		image: '',
+		icon: '',
+		formdata: new FormData()
+	});
+
+	const { title, image, icon } = details;
 
 	// getting logged in user details from localhost
 	const { user } = isAuthenticated();
 
 	// changing value on user type interaction
-	const handleChange = (event) => {
-		setCategory(event.target.value);
+	const handleChange = (name) => (event) => {
+		let value;
+
+		if (name === 'image') {
+			value = event.target.files[0];
+		} else if (name === 'icon') {
+			value = event.target.files[0];
+		} else {
+			value = event.target.value;
+		}
+
+		setDetails({ ...details, [name]: value });
 	};
 
 	// trigger the function on submit
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		newProductCategory(category, user._id)
+		newProductCategory(title, image, icon, user._id)
 			.then((response) => {
 				if (response.error) {
 					cogoToast.error(response.error, { position: 'top-right' });
@@ -32,7 +49,7 @@ const NewProductCategory = ({ history }) => {
 						history.push('/admin/productcategories');
 					});
 
-					setCategory('');
+					setDetails({ ...details, title: '', image: '', icon: '' });
 				}
 			})
 			.catch((error) => {
@@ -46,7 +63,13 @@ const NewProductCategory = ({ history }) => {
 				<div className="container">
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="cate">Category title</label>
-						<input type="text" id="cate" value={category} onChange={handleChange} required />
+						<input type="text" id="cate" value={title} onChange={handleChange('title')} required />
+
+						<label htmlFor="image">Category Picture</label>
+						<input type="file" id="image" onChange={handleChange('image')} required />
+
+						<label htmlFor="icon">Category Icon</label>
+						<input type="file" id="icon" onChange={handleChange('icon')} required />
 
 						<input type="submit" className="primary" value="Add Category" />
 					</form>

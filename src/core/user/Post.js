@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../assets/sass/core/post.scss';
-import thumbnail from '../../assets/images/homepage/posts/post.jpg'
+import thumbnail from '../../assets/images/homepage/posts/post.jpg';
 import { Link } from 'react-router-dom';
 
-const Post = () => {
+const Post = ({ data }) => {
 	return (
 		<div className="post">
 			<div className="post__thumbnail">
@@ -12,13 +12,11 @@ const Post = () => {
 			<div className="post__content">
 				<small>Uncategorized / September 7, 2020 / post by mac</small>
 
-				<h1>10 food you can try to make at your home in your free time</h1>
+				<h1>{data.title}</h1>
 
-				<p>
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit Nostrum inventore Ut dolor laborum reiciendis corrupti dolore
-				</p>
+				{data.description}
 
-				<Link to="/post/postid">
+				<Link to={`/post/${data._id}`}>
 					<button>Read more</button>
 				</Link>
 			</div>

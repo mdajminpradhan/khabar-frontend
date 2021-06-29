@@ -4,11 +4,13 @@ import { isAuthenticated } from '../../auth/helper/apicall';
 const { user } = isAuthenticated();
 
 // creating post category
-export const newCategory = (cate, userId) => {
+export const newCategory = (title, icon, userId) => {
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('icon', icon);
+
 	return axios
-		.post(`/postcategory/create/${userId}`, {
-			title: cate
-		})
+		.post(`/postcategory/create/${userId}`, formdata)
 		.then((response) => response)
 		.catch((error) => error.response.data);
 };
@@ -34,11 +36,14 @@ export const get_category_by_id = (cate_id) => {
 };
 
 // update post category
-export const update_category = (cate, cate_id, profile_id) => {
+export const update_category = (title, icon, cate_id, profile_id) => {
+	console.log(title)
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('icon', icon);
+
 	return axios
-		.put(`postcategory/update/${cate_id}/${profile_id}`, {
-			title: cate
-		})
+		.put(`postcategory/update/${cate_id}/${profile_id}`, formdata)
 		.then((response) => {
 			return response.data;
 		})
@@ -58,11 +63,14 @@ export const delete_category = (cateid, profileid) => {
 };
 
 // creating product category
-export const newProductCategory = (cate, userId) => {
+export const newProductCategory = (title, image, icon, userId) => {
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('image', image);
+	formdata.append('icon', icon);
+
 	return axios
-		.post(`/category/create/${userId}`, {
-			title: cate
-		})
+		.post(`/category/create/${userId}`, formdata)
 		.then((response) => response)
 		.catch((error) => error.response.data);
 };
@@ -88,11 +96,14 @@ export const get_product_category_by_id = (cate_id) => {
 };
 
 // update post category
-export const update_product_category = (cate, cate_id, profile_id) => {
+export const update_product_category = (title, image, icon, cate_id, profile_id) => {
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('image', image);
+	formdata.append('icon', icon);
+
 	return axios
-		.put(`category/update/${cate_id}/${profile_id}`, {
-			title: cate
-		})
+		.put(`category/update/${cate_id}/${profile_id}`, formdata)
 		.then((response) => {
 			return response.data;
 		})
@@ -177,6 +188,121 @@ export const delete_post = (postid, profileid) => {
 		.delete(`/post/delete/${postid}/${profileid}`)
 		.then((response) => {
 			return response;
+		})
+		.catch((error) => error);
+};
+
+// creating product
+export const createProduct = (
+	title,
+	categories,
+	shortdescription,
+	longdescription,
+	top,
+	price,
+	specialprice,
+	image
+) => {
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('category', JSON.stringify(categories));
+	formdata.append('shortdescription', shortdescription);
+	formdata.append('longdescription', longdescription);
+	formdata.append('top', top);
+	formdata.append('price', price);
+	if (specialprice) {
+		formdata.append('specialprice', specialprice);
+	}
+	formdata.append('picture', image);
+
+	return axios
+		.post(`/product/create/${user._id}`, formdata)
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data;
+		});
+};
+
+// get all product
+export const get_all_products = () => {
+	return axios
+		.get('/products')
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => error);
+};
+
+// get product data by id
+export const get_product_by_id = async (productid) => {
+	try {
+		const response = await axios.get(`/product/${productid}`);
+		return response.data;
+	} catch (error) {
+		return error.response.data;
+	}
+};
+
+// creating product
+export const updateProduct = (
+	title,
+	categories,
+	shortdescription,
+	longdescription,
+	top,
+	price,
+	specialprice,
+	tags,
+	image,
+	productid
+) => {
+	console.log(productid);
+
+	const formdata = new FormData();
+	formdata.append('title', title);
+	formdata.append('category', JSON.stringify(categories));
+	formdata.append('shortdescription', shortdescription);
+	formdata.append('longdescription', longdescription);
+	formdata.append('top', top);
+	formdata.append('price', price);
+	if (specialprice) {
+		formdata.append('specialprice', specialprice);
+	}
+	formdata.append('tags', JSON.stringify(tags));
+	formdata.append('picture', image);
+
+	console.log(title);
+
+	return axios
+		.put(`/product/update/${productid}/${user._id}`, formdata)
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data;
+		});
+};
+
+// delete products
+export const delete_product = (productid, profileid) => {
+	return axios
+		.delete(`/product/delete/${productid}/${profileid}`)
+		.then((response) => {
+			return response;
+		})
+		.catch((error) => error);
+};
+
+// get data picture
+export const getDataPicture = (param, id) => {
+	return axios
+		.post(`/${param}`, {
+			id: id
+		})
+		.then((response) => {
+			return response.data.picture;
 		})
 		.catch((error) => error);
 };

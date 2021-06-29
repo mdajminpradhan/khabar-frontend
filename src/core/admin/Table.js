@@ -4,9 +4,12 @@ import Image from '../../assets/images/blog/recentpost/1.jpg';
 import { HiPencil } from 'react-icons/hi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function Table({ data, image, deleteData }) {
-	
+	// getting page url
+	const location = useLocation();
+
 	// post count number
 	let count = 0;
 
@@ -31,7 +34,11 @@ function Table({ data, image, deleteData }) {
 						<div>Category</div>
 						<div className="comment">3</div>
 						<div className="actions">
-							<Link to={`/admin/post/update/${info._id}`}>
+							<Link
+								to={`/admin/${location.pathname === '/admin/products'
+									? 'product'
+									: 'post'}/update/${info._id}`}
+							>
 								<HiPencil />
 							</Link>
 							<AiOutlineDelete
