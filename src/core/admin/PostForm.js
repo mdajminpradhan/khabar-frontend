@@ -7,7 +7,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { isAuthenticated } from '../../auth/helper/apicall';
 import cogoToast from 'cogo-toast';
 
-function Form({ fetchedCategories, sendDataToPapa, getCreatePostAction, dataById = 'undefined' }) {
+function Form({ fetchedCategories, sendDataToPapa, getCreateAction, dataById = 'undefined' }) {
 	const [ details, setDetails ] = useState({
 		title: '',
 		description: 'post description',
@@ -89,7 +89,7 @@ function Form({ fetchedCategories, sendDataToPapa, getCreatePostAction, dataById
 	// handle submit
 	const handleSubmit = () => {
 		sendDataToPapa(title, categories, description, tags, image);
-		getCreatePostAction(true);
+		getCreateAction(true);
 	};
 
 	return (

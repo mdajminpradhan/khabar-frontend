@@ -145,7 +145,7 @@ export const createPost = (title, postcategories, description, tags, image) => {
 // get all posts
 export const get_all_posts = () => {
 	return axios
-		.get('/posts')
+		.post('/posts')
 		.then((response) => {
 			return response.data;
 		})

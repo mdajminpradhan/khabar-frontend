@@ -2,9 +2,10 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 // createaccount api call
-export const createAccount = (email, password) => {
+export const createAccount = (name, email, password) => {
 	return axios
 		.post('/createaccount', {
+			name: name,
 			email: email,
 			password: password
 		})

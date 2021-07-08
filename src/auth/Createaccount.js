@@ -7,6 +7,7 @@ import cogoToast from 'cogo-toast';
 
 const Createaccount = () => {
 	const [ details, setDetails ] = useState({
+		name: 'Ajmin Pradhan',
 		email: 'imajmin@gmail.com',
 		password: 'Imajmin2014@#$'
 	});
@@ -14,7 +15,7 @@ const Createaccount = () => {
 	const [ error, setError ] = useState('');
 
 	// destructering from state
-	const { email, password } = details;
+	const { name, email, password } = details;
 
 	// trigger the function when user type
 	const handleChange = (name) => (event) => {
@@ -25,7 +26,7 @@ const Createaccount = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		createAccount(email, password)
+		createAccount(name, email, password)
 			.then((response) => {
 				if (response.error) {
 					cogoToast.error(response.error, { position: 'top-right' });
@@ -36,6 +37,7 @@ const Createaccount = () => {
 
 					setDetails({
 						...details,
+						name: '',
 						email: '',
 						password: ''
 					});
@@ -55,6 +57,9 @@ const Createaccount = () => {
 			<div className="createaccount">
 				<form onSubmit={handleSubmit}>
 					<h3>Crete an account</h3>
+					<label htmlFor="name">Your name</label>
+					<input type="text" value={name} onChange={handleChange('name')} required />
+
 					<label htmlFor="email">Email address</label>
 					<input type="email" value={email} onChange={handleChange('email')} required />
 

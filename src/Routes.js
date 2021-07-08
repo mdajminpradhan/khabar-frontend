@@ -58,7 +58,7 @@ const Routes = () => {
 				<Route path="/loginaccount" exact component={Login} />
 				<AdminRoute path="/contact" exact component={Contact} />
 				<Route path="/products" exact component={Products} />
-				<Route path="/post" exact component={Fullpost} />
+				<Route path="/post/:postid" exact component={Fullpost} />
 				<Route path="/blog" exact component={Blog} />
 				<Route path="/About" exact component={About} />
 				<Route path="/menu" exact component={Menu} />

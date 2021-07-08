@@ -7,9 +7,11 @@ import Pagination from '../core/user/Pagination';
 import Post from '../core/user/Post';
 import Sidebar from '../core/user/Sidebar';
 import { getBlogPosts } from './helper/apicalls';
+import axios from 'axios';
 
 const Blog = () => {
 	const [ posts, setPosts ] = useState([]);
+	const [ image, setImage ] = useState('');
 
 	const [ currentPage, setCurrentPage ] = useState(1);
 	const [ postsPerPage, setPostsPerPage ] = useState(10);
@@ -32,12 +34,29 @@ const Blog = () => {
 		preloadPosts();
 	}, []);
 
+	// get post picture
+	useEffect(
+		() => {
+			posts.map((post) =>
+				axios
+					.post(`/postpicture`, {
+						id: post._id
+					})
+					.then((response) => {
+						setImage(response.data.picture);
+					})
+					.catch((error) => console.log(error))
+			);
+		},
+		[ posts ]
+	);
+
 	// get current page
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
 	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-	const paginate = (pageNumber) => setCurrentPage(pageNumber)
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
 		<Base>
@@ -48,7 +67,7 @@ const Blog = () => {
 						{currentPosts.map((post, index) => {
 							return (
 								<Fragment>
-									<Post data={post} key={index} />
+									<Post data={post} image={image} key={index} />
 								</Fragment>
 							);
 						})}
