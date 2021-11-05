@@ -27,11 +27,11 @@ import NewProductCategory from './admin/NewProductCategory';
 import UpdateProductCategory from './admin/UpdateProductCategory';
 
 // auth routes
-import Login from './auth/Login';
-import Createaccount from './auth/Createaccount';
+import Login from './pages/site/Login';
+import Createaccount from './pages/site/Createaccount';
 
 // Admin route
-import AdminRoute from './auth/helper/AdminRoutes';
+import AdminRoute from './utils/AdminRoutes';
 
 const Routes = () => {
 	return (
