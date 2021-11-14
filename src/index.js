@@ -5,13 +5,16 @@ import Routes from "./Routes";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Cookies from "universal-cookie";
 const queryClient = new QueryClient();
+const cookie = new Cookies();
 
-const token = JSON.parse(localStorage.getItem("jwt"));
+// getting logged in user info
+const profile = cookie.get("loginaccount");
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
-axios.defaults.headers.common["Authorization"] = token
-  ? `Bearer ${token.token}`
+axios.defaults.headers.common["Authorization"] = profile !== ""
+  ? `Bearer ${profile?.token}`
   : "";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
