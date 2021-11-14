@@ -15,6 +15,11 @@ let schema = yup.object().shape({
   password: yup.string().required(),
 });
 
+let initialState = {
+  email: "testname@mymail.com",
+  password: "Jack2020@#$",
+};
+
 const Login = ({ history }) => {
   const {
     handleSubmit,
@@ -23,6 +28,7 @@ const Login = ({ history }) => {
     watch,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: initialState,
   });
 
   const { mutateAsync, isSuccess, data: responseData } = useLoginAccount();
