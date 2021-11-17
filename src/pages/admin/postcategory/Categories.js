@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "assets/sass/admin/pages/categories.scss";
 import AdminBase from "components/admin/AdminBase";
 import { Link } from "react-router-dom";
 import { HiPencil } from "react-icons/hi";
 import { AiOutlineDelete } from "react-icons/ai";
 import cogoToast from "cogo-toast";
-import { useGetPostCategories } from "apicalls/hooks/admin/usePostCategory";
+import { useGetPostCategories, useDeletePostCategory } from "apicalls/hooks/admin/usePostCategory";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Categories = () => {
   const { data, isLoading } = useGetPostCategories();
+  const { mutateAsync } = useDeletePostCategory();
 
   useEffect(() => {
     console.log(data);
   }, [data]);
 
+  // triger the function when user submit
+  const handleDeleteCategory = async (cateId) => {
+    try {
+      await mutateAsync(cateId);
+    } catch (error) {
+      cogoToast.error(error?.response?.data?.error, { position: "top-right" });
+    }
+  };
+
+  // categories count start from zero
+  // and later on incresed through loop
   let count = 1;
 
   return (
@@ -50,7 +62,9 @@ const Categories = () => {
                       <Link to={`/admin/postcategory/update/${cate._id}`}>
                         <HiPencil />
                       </Link>
-                      <AiOutlineDelete />
+                      <AiOutlineDelete
+                        onClick={() => handleDeleteCategory(cate?._id)}
+                      />
                     </div>
                   </div>
                 ))
