@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { HiPencil } from "react-icons/hi";
 import { AiOutlineDelete } from "react-icons/ai";
 import cogoToast from "cogo-toast";
-import { useGetPostCategories, useDeletePostCategory } from "apicalls/hooks/admin/usePostCategory";
+import { useGetProductCategories, useDeleteProductCategory } from "apicalls/hooks/admin/useProductCategory";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Categories = () => {
-  const { data, isLoading } = useGetPostCategories();
-  const { mutateAsync } = useDeletePostCategory();
+  const { data, isLoading } = useGetProductCategories();
+  const { mutateAsync } = useDeleteProductCategory();
 
   useEffect(() => {
     console.log(data);
@@ -36,7 +36,7 @@ const Categories = () => {
         <div className="container">
           <div className="categories__header">
             <span>All categories</span>
-            <Link to="/admin/postcategory/new" className="primary">
+            <Link to="/admin/productcategory/new" className="primary">
               Add New
             </Link>
           </div>
@@ -59,7 +59,7 @@ const Categories = () => {
                     </div>
                     <div>{cate.title}</div>
                     <div className="actions">
-                      <Link to={`/admin/postcategory/update/${cate._id}`}>
+                      <Link to={`/admin/productcategory/update/${cate._id}`}>
                         <HiPencil />
                       </Link>
                       <AiOutlineDelete

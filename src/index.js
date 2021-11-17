@@ -12,10 +12,10 @@ const cookie = new Cookies();
 // getting logged in user info
 const profile = cookie.get("loginaccount");
 
+console.log(profile);
+
 axios.defaults.baseURL = process.env.REACT_APP_API;
-axios.defaults.headers.common["Authorization"] = profile !== ""
-  ? `Bearer ${profile?.token}`
-  : "";
+axios.defaults.headers.common["Authorization"] = `Bearer ${profile?.token}`
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 ReactDOM.render(

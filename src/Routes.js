@@ -21,10 +21,10 @@ import NewProduct from './admin/NewProduct';
 import UpdateProduct from './admin/UpdateProduct';
 import Categories from 'pages/admin/postcategory/Categories';
 import NewCategory from './pages/admin/postcategory/NewCategory';
-import UpdateCategory from './admin/UpdateCategory';
-import ProductCategories from './admin/ProductCategories';
-import NewProductCategory from './admin/NewProductCategory';
-import UpdateProductCategory from './admin/UpdateProductCategory';
+import UpdateCategory from 'pages/admin/postcategory/UpdateCategory';
+import ProductCategories from 'pages/admin/productcategory/Categories';
+import NewProductCategory from 'pages/admin/productcategory/NewCategory';
+import UpdateProductCategory from 'pages/admin/productcategory/UpdateCategory';
 
 // auth routes
 import Login from './pages/site/Login';
