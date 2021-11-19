@@ -44,27 +44,31 @@ const ProductTable = () => {
         <div>Action</div>
       </div>
       <div className="table__body">
-        {data?.map((product, index) => (
-          <div className="tablerow">
-            <div>{count++}</div>
-            <div>
-              <img src={product?.picture} alt="thumbnail" />
+        {isLoading ? (
+          <Skeleton count={10} />
+        ) : (
+          data?.map((product, index) => (
+            <div className="tablerow">
+              <div>{count++}</div>
+              <div>
+                <img src={product?.picture} alt="thumbnail" />
+              </div>
+              <div className="title">{product?.title || "Product title"}</div>
+              <div>Category</div>
+              <div className="comment">3</div>
+              <div className="actions">
+                <Link to="a">
+                  <HiPencil />
+                </Link>
+                <AiOutlineDelete
+                  onClick={() => {
+                    handleDeleteCategory(product?._id);
+                  }}
+                />
+              </div>
             </div>
-            <div className="title">{product?.title || "Product title"}</div>
-            <div>Category</div>
-            <div className="comment">3</div>
-            <div className="actions">
-              <Link to="a">
-                <HiPencil />
-              </Link>
-              <AiOutlineDelete
-                onClick={() => {
-                  handleDeleteCategory(product?._id);
-                }}
-              />
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
