@@ -72,3 +72,41 @@ export const deleteProductCategory = async (categoryId) => {
   );
   return data;
 };
+
+// product categories api call
+export const createProduct = async (formdata) => {
+  const { data } = await axios.post(
+    `/product/create/${profile?.user?._id}`,
+    formdata
+  );
+  return data;
+};
+
+export const getProducts = async () => {
+  const { data } = await axios.get("products");
+  return data;
+};
+
+export const getProductById = async (productId) => {
+  const { data } = await axios.get(`/product/${productId}`);
+  return data;
+};
+export const getProductPictureById = async (productId) => {
+  const { data } = await axios.post(`/productpicture`, productId);
+  return data;
+};
+
+export const updateProduct = async (cateData) => {
+  const { data } = await axios.put(
+    `/productcategory/update/${cateData.categoryId}/${profile?.user?._id}`,
+    cateData.formdata
+  );
+  return data;
+};
+
+export const deleteProduct = async (productId) => {
+  const { data } = await axios.delete(
+    `/product/delete/${productId}/${profile?.user?._id}`
+  );
+  return data;
+};
