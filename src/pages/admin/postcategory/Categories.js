@@ -7,7 +7,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import cogoToast from "cogo-toast";
 import { useGetPostCategories, useDeletePostCategory } from "apicalls/hooks/admin/usePostCategory";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import "react-loading-skeleton/dist/skeleton.css"; 
 
 const Categories = () => {
   const { data, isLoading } = useGetPostCategories();
