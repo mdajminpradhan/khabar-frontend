@@ -46,7 +46,7 @@
 				font-size: .95rem;
 				padding: .5rem;
 				border-radius: 10px;
-				margin-bottom: 1.1rem;
+				// margin-bottom: 1.1rem;
 				width: 100%;
 				box-shadow: 0 5px 20px 0 rgba(135, 207, 235, 0.05);
 				background: rgb(254, 254, 254);
@@ -86,6 +86,10 @@
 				.publishh {
 					width: 100%;
 					text-align: right;
+
+					input {
+						border: none;
+					}
 				}
 			}
 
@@ -248,6 +252,11 @@
 					object-fit: cover;
 				}
 			}
+		}
+
+		.errormsg {
+			color: rgb(255, 85, 85);
+			display: block;
 		}
 	}
 }
