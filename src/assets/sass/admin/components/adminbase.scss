@@ -13,6 +13,9 @@
 
 
     .adminbase__right {
+        height: 100vh;
+        overflow-y: scroll;
+
         .adminbase__rightTop {
             background: white;
             display: grid;
