@@ -125,35 +125,6 @@ const NewProduct = ({ history }) => {
     // console.log("watch", watchAll);
   }, [errors, watchAll]);
 
-  //   const [details, setDetails] = useState({
-  //     title: "",
-  //     shortdescription: "post description",
-  //     longdescription: "post description",
-  //     top: "false",
-  //     price: "",
-  //     specialprice: "",
-  //     image: "",
-  //   });
-  // marking category as checked based on given id from loop
-  //   const checkChecked = (cateid) => {
-  //     if (dataById !== "undefined" && Object.keys(dataById).length > 1) {
-  //       if (categories.includes(cateid)) {
-  //         return true;
-  //       }
-  //     }
-  //   };
-
-  // handling categories
-  //   const handleCategory = (event) => {
-  //     const value = event.target.value;
-  //     if (categories.includes(value)) {
-  //       const filter = categories.filter((cate) => cate !== value);
-  //       setCategories(filter);
-  //     } else {
-  //       setCategories([...categories, value]);
-  //     }
-  //   };
-
   return (
     <AdminBase>
       <div className="newpost">
