@@ -9,14 +9,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { serialize } from "object-to-formdata";
+import cogoToast from "cogo-toast";
+import { useParams } from "react-router-dom";
+import { Image } from "cloudinary-react";
 
 // importing components
 import AdminBase from "components/admin/AdminBase";
 
 // api hook
 import { useGetProductCategories } from "apicalls/hooks/admin/useProductCategory";
-import cogoToast from "cogo-toast";
-import { useCreateProduct } from "apicalls/hooks/admin/useProduct";
+import {
+  useUpdateProduct,
+  useGetProductById,
+} from "apicalls/hooks/admin/useProduct";
 
 // creating schema for form validation
 let schema = yup.object().shape({
@@ -55,8 +60,13 @@ let schema = yup.object().shape({
     .typeError("You must specify a number"),
 });
 
-const NewProduct = ({ history }) => {
+const UpdateProduct = ({ history }) => {
   const [image, setImage] = useState();
+
+  const { productId } = useParams();
+
+  const { data: productData, isLoading: productGetLoading } =
+    useGetProductById(productId);
   const { data, isLoading } = useGetProductCategories();
 
   const {
@@ -64,6 +74,7 @@ const NewProduct = ({ history }) => {
     formState: { errors },
     register,
     watch,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -72,9 +83,15 @@ const NewProduct = ({ history }) => {
     mutateAsync,
     isSuccess,
     isLoading: productLoading,
-  } = useCreateProduct();
+  } = useUpdateProduct();
 
   const watchAll = watch();
+
+  useEffect(() => {
+    if (productData) {
+      reset(productData);
+    }
+  }, [productData]);
 
   const handleImage = (event) => {
     console.log(event.target.files);
@@ -97,22 +114,21 @@ const NewProduct = ({ history }) => {
   };
 
   // creating product on submit
-  const handleCreateProduct = async (formdata) => {
-    if (!image) {
-      cogoToast.error("Please select product thumbnail", {
+  const handleUpdateProduct = async (formdata) => {
+    const formData = serialize(formdata);
+    formData.append("picture", image);
+
+    const productData = {
+      productId: productId,
+      formdata: formData,
+    };
+
+    try {
+      await mutateAsync(productData);
+    } catch (error) {
+      cogoToast.error(error?.response?.data?.error, {
         position: "top-right",
       });
-    } else {
-      const formData = serialize(formdata);
-      formData.append("picture", image);
-
-      try {
-        await mutateAsync(formData);
-      } catch (error) {
-        cogoToast.error(error?.response?.data?.error, {
-          position: "top-right",
-        });
-      }
     }
   };
 
@@ -121,7 +137,7 @@ const NewProduct = ({ history }) => {
   }
 
   useEffect(() => {
-    // console.log("errors", errors);
+    console.log("errors", errors);
     // console.log("watch", watchAll);
   }, [errors, watchAll]);
 
@@ -130,7 +146,7 @@ const NewProduct = ({ history }) => {
       <div className="newpost">
         <div className="container">
           <div className="form">
-            <form onSubmit={handleSubmit(handleCreateProduct)}>
+            <form onSubmit={handleSubmit(handleUpdateProduct)}>
               <div className="form__left">
                 <label htmlFor="title">Product title</label>
                 <input type="text" id="title" {...register("title")} />
@@ -172,7 +188,7 @@ const NewProduct = ({ history }) => {
                 <div className="publish">
                   <div>
                     <span className="publishContext">
-                      Publish your data right away
+                      Update your product right away
                     </span>
                   </div>
                   <div className="devider" />
@@ -182,14 +198,10 @@ const NewProduct = ({ history }) => {
                       <input
                         type="button"
                         className="primary"
-                        value="Publishing..."
+                        value="Updating..."
                       />
                     ) : (
-                      <input
-                        type="submit"
-                        className="primary"
-                        value="Publish"
-                      />
+                      <input type="submit" className="primary" value="Update" />
                     )}
                   </div>
                 </div>
@@ -213,11 +225,11 @@ const NewProduct = ({ history }) => {
                       </div>
                     ))
                   )}
-
-                  <small class="errormsg">
-                    {errors?.categroy ? errors.categroy?.message : null}
-                  </small>
                 </div>
+
+                <small class="errormsg">
+                  {errors?.categroy ? console.log("hey") : null}
+                </small>
 
                 <div className="topproduct">
                   <h5>Top product</h5>
@@ -265,6 +277,12 @@ const NewProduct = ({ history }) => {
                   <input type="file" onChange={handleImage} />
                   {image ? (
                     <img src={URL.createObjectURL(image)} alt="thumbnail" />
+                  ) : productData?.pictureid ? (
+                    <Image
+                      publicId={productData?.pictureid}
+                      width="300"
+                      crop="scale"
+                    />
                   ) : (
                     ""
                   )}
@@ -278,4 +296,4 @@ const NewProduct = ({ history }) => {
   );
 };
 
-export default NewProduct;
+export default UpdateProduct;

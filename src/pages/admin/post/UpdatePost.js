@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "assets/sass/admin/pages/newproduct.scss";
-import "assets/sass/admin/components/productform.scss";
+import "assets/sass/admin/pages/newpost.scss";
+import "assets/sass/admin/components/postform.scss";
+
+// importing components
+import AdminBase from "components/admin/AdminBase";
+
+// api hook
+import { useGetPostCategories } from "apicalls/hooks/admin/usePostCategory";
+import { useUpdatePost, useGetPostById } from "apicalls/hooks/admin/usePost";
 
 // importing libraries
 import Skeleton from "react-loading-skeleton";
@@ -9,14 +16,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { serialize } from "object-to-formdata";
-
-// importing components
-import AdminBase from "components/admin/AdminBase";
-
-// api hook
-import { useGetProductCategories } from "apicalls/hooks/admin/useProductCategory";
 import cogoToast from "cogo-toast";
-import { useCreateProduct } from "apicalls/hooks/admin/useProduct";
+import { useParams } from "react-router-dom";
+import { IoIosClose } from "react-icons/io";
+import { Image } from "cloudinary-react";
+import Cookies from "universal-cookie";
+const cookie = new Cookies();
 
 // creating schema for form validation
 let schema = yup.object().shape({
@@ -25,12 +30,7 @@ let schema = yup.object().shape({
     .min(3, "Title should be at least 3 characters")
     .max(100, "Title can not be more than 100 characters")
     .required(),
-  shortdescription: yup
-    .string()
-    .min(10, "Short description should be at least 10 characters")
-    .max(300, "Short description can not be more than 300 characters")
-    .required(),
-  longdescription: yup
+  description: yup
     .string()
     .min(10, "Long description should be at least 10 characters")
     .max(1500, "Long description can not be more than 1500 characters")
@@ -40,41 +40,41 @@ let schema = yup.object().shape({
     .min(1, "Please select at least 1 category")
     .required()
     .typeError("You must select at least one category"),
-  isFeatured: yup.bool().nullable(),
-  price: yup
-    .number()
-    .positive()
-    .integer()
-    .required()
-    .typeError("You must specify a number"),
-  specialprice: yup
-    .number()
-    .positive()
-    .integer()
-    .nullable()
-    .typeError("You must specify a number"),
 });
 
-const NewProduct = ({ history }) => {
+const UpdatePost = ({ history }) => {
   const [image, setImage] = useState();
-  const { data, isLoading } = useGetProductCategories();
+  const [tag, setTag] = useState("");
+  const [tags, setTags] = useState([]);
+  const { postId } = useParams();
+
+
+  const { data: postData } = useGetPostById(postId);
+  const { data, isLoading } = useGetPostCategories();
 
   const {
     handleSubmit,
     formState: { errors },
     register,
     watch,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const {
-    mutateAsync,
-    isSuccess,
-    isLoading: productLoading,
-  } = useCreateProduct();
+  const { mutateAsync, isSuccess, isLoading: postLoading } = useUpdatePost();
 
   const watchAll = watch();
+
+  useEffect(() => {
+    console.log(postData);
+    if (postData) {
+      reset(postData);
+      setTags((postData?.tags).split(","));
+    }
+  }, [postData]);
+
+  console.log(postData?.tags.split(","));
 
   const handleImage = (event) => {
     console.log(event.target.files);
@@ -96,28 +96,50 @@ const NewProduct = ({ history }) => {
     }
   };
 
-  // creating product on submit
-  const handleCreateProduct = async (formdata) => {
-    if (!image) {
-      cogoToast.error("Please select product thumbnail", {
-        position: "top-right",
-      });
-    } else {
-      const formData = serialize(formdata);
-      formData.append("picture", image);
-
-      try {
-        await mutateAsync(formData);
-      } catch (error) {
-        cogoToast.error(error?.response?.data?.error, {
+  // creating tag
+  const handleTag = (event) => {
+    if (event.key === "Enter") {
+      if (tag === "") {
+        cogoToast.error("Write a tag first please", {
           position: "top-right",
         });
+      } else {
+        setTags([...tags, tag]);
+        setTag("");
       }
     }
   };
 
+  // removing tags
+  const removeTag = (tagindex) => {
+    setTags(tags.filter((tag, index) => index !== tagindex));
+  };
+
+  const user = cookie.get("loginaccount");
+
+  // creating post on submit
+  const handleUpdatePost = async (formdata) => {
+    const formData = serialize(formdata);
+    formData.append("author", user?.user?._id);
+    formData.append("tags", tags);
+    formData.append("picture", image);
+
+    const postFormData = {
+      postId: postId,
+      formdata: formData,
+    };
+
+    try {
+      await mutateAsync(postFormData);
+    } catch (error) {
+      cogoToast.error(error?.response?.data?.error, {
+        position: "top-right",
+      });
+    }
+  };
+
   if (isSuccess) {
-    history.push("/admin/products");
+    history.push("/admin/posts");
   }
 
   useEffect(() => {
@@ -130,66 +152,45 @@ const NewProduct = ({ history }) => {
       <div className="newpost">
         <div className="container">
           <div className="form">
-            <form onSubmit={handleSubmit(handleCreateProduct)}>
+            <form onSubmit={handleSubmit(handleUpdatePost)}>
               <div className="form__left">
-                <label htmlFor="title">Product title</label>
+                <label htmlFor="title">Post title</label>
                 <input type="text" id="title" {...register("title")} />
                 <small class="errormsg">
                   {errors?.title ? errors.title?.message : null}
                 </small>
 
-                <label className="shortdesc">Product short description</label>
+                <label className="shortdesc">Post description</label>
 
                 <textarea
                   name=""
                   id=""
                   cols="30"
                   rows="10"
-                  {...register("shortdescription")}
+                  {...register("description")}
                 ></textarea>
                 <small class="errormsg">
-                  {errors?.shortdescription
-                    ? errors.shortdescription?.message
-                    : null}
-                </small>
-
-                <label className="longdesc">Product long description</label>
-
-                <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                  {...register("longdescription")}
-                ></textarea>
-                <small class="errormsg">
-                  {errors?.longdescription
-                    ? errors.longdescription?.message
-                    : null}
+                  {errors?.description ? errors.description?.message : null}
                 </small>
               </div>
               <div className="form__right">
                 <div className="publish">
                   <div>
                     <span className="publishContext">
-                      Publish your data right away
+                      Update your post right away
                     </span>
                   </div>
                   <div className="devider" />
 
                   <div className="publishh">
-                    {productLoading ? (
+                    {postLoading ? (
                       <input
                         type="button"
                         className="primary"
-                        value="Publishing..."
+                        value="Updating..."
                       />
                     ) : (
-                      <input
-                        type="submit"
-                        className="primary"
-                        value="Publish"
-                      />
+                      <input type="submit" className="primary" value="Update" />
                     )}
                   </div>
                 </div>
@@ -219,54 +220,44 @@ const NewProduct = ({ history }) => {
                   </small>
                 </div>
 
-                <div className="topproduct">
-                  <h5>Top product</h5>
+                <div className="tagss">
+                  <h5>Tags</h5>
 
-                  <div className="category">
+                  <ul>
+                    {tags.map((tag, index) => (
+                      <li key={index}>
+                        <div>
+                          <span>{tag}</span>
+                          <IoIosClose onClick={() => removeTag(index)} />
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="taginput">
                     <input
-                      type="checkbox"
-                      id="featured"
-                      //   checked={top == true ? "true" : ""}
-                      {...register("isFeatured")}
+                      type="text"
+                      value={tag}
+                      onChange={(e) => setTag(e.target.value)}
+                      onKeyPress={handleTag}
+                      placeholder="Enter your tags"
                     />
-                    <label htmlFor="featured">Featured</label>
                   </div>
                 </div>
-                <div className="price">
-                  <h5>Top product</h5>
 
-                  <div className="pricesec">
-                    <label htmlFor="price">Regular price</label>
-                    <input type="number" id="price" {...register("price")} />
-                    <small class="errormsg">
-                      {errors?.regularprice
-                        ? errors.regularprice?.message
-                        : null}
-                    </small>
-                  </div>
-
-                  <div className="pricesec">
-                    <label htmlFor="specialprice">Special price</label>
-                    <input
-                      type="number"
-                      id="specialprice"
-                      {...register("specialprice")}
-                    />
-                    <small class="errormsg">
-                      {errors?.specialprice
-                        ? errors.specialprice?.message
-                        : null}
-                    </small>
-                  </div>
-                </div>
                 <div className="thumbnail">
                   <h5>Thumbnail</h5>
 
                   <input type="file" onChange={handleImage} />
                   {image ? (
                     <img src={URL.createObjectURL(image)} alt="thumbnail" />
+                  ) : postData?.icon ? (
+                    <img src={postData?.icon} alt="thumbnail" />
                   ) : (
-                    ""
+                    <Image
+                      publicId={postData?.pictureid}
+                      width="300"
+                      crop="scale"
+                    />
                   )}
                 </div>
               </div>
@@ -278,4 +269,4 @@ const NewProduct = ({ history }) => {
   );
 };
 
-export default NewProduct;
+export default UpdatePost;

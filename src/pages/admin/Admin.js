@@ -1,10 +1,14 @@
 import React from 'react'
-import '../../assets/sass/admin/components/adminbase.scss'
-import AdminLeft from './AdminLeft'
+import 'assets/sass/admin/components/adminbase.scss'
+
+// importing libraries
 import { FiSearch } from 'react-icons/fi';
 import { logoutAccount } from '../../auth/helper/apicall';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import cogoToast from 'cogo-toast';
+
+// importing component
+import AdminLeft from 'components/admin/AdminLeft'
 
 
 const Admin = ({history, children}) => {

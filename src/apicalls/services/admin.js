@@ -73,7 +73,7 @@ export const deleteProductCategory = async (categoryId) => {
   return data;
 };
 
-// product categories api call
+// product api call
 export const createProduct = async (formdata) => {
   const { data } = await axios.post(
     `/product/create/${profile?.user?._id}`,
@@ -96,10 +96,10 @@ export const getProductPictureById = async (productId) => {
   return data;
 };
 
-export const updateProduct = async (cateData) => {
+export const updateProduct = async (productData) => {
   const { data } = await axios.put(
-    `/productcategory/update/${cateData.categoryId}/${profile?.user?._id}`,
-    cateData.formdata
+    `/product/update/${productData.productId}/${profile?.user?._id}`,
+    productData.formdata
   );
   return data;
 };
@@ -107,6 +107,45 @@ export const updateProduct = async (cateData) => {
 export const deleteProduct = async (productId) => {
   const { data } = await axios.delete(
     `/product/delete/${productId}/${profile?.user?._id}`
+  );
+  return data;
+};
+
+// post api call
+export const createPost = async (formdata) => {
+  const { data } = await axios.post(
+    `/post/create/${profile?.user?._id}`,
+    formdata
+  );
+  return data;
+};
+
+export const getPosts = async () => {
+  const { data } = await axios.get("posts");
+  return data;
+};
+
+export const getPostById = async (postId) => {
+  const { data } = await axios.get(`/post/withoutcatedetails/${postId}`);
+  return data;
+};
+
+export const getPostPictureById = async (postId) => {
+  const { data } = await axios.post(`/postpicture`, postId);
+  return data;
+};
+
+export const updatePost = async (postData) => {
+  const { data } = await axios.put(
+    `/post/update/${postData.postId}/${profile?.user?._id}`,
+    postData.formdata
+  );
+  return data;
+};
+
+export const deletePost = async (productId) => {
+  const { data } = await axios.delete(
+    `/post/delete/${productId}/${profile?.user?._id}`
   );
   return data;
 };
