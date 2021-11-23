@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "assets/sass/admin/components/table.scss";
-import Image from "assets/images/blog/recentpost/1.jpg";
+
+// importing libraries
+
 import { HiPencil } from "react-icons/hi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import cogoToast from "cogo-toast";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Image } from "cloudinary-react";
+
+// importing api hook
 import {
   useGetProducts,
   useDeleteProduct,
 } from "apicalls/hooks/admin/useProduct";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 const ProductTable = () => {
   const { data, isLoading } = useGetProducts();
   const { mutateAsync } = useDeleteProduct();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   // triger the function when user submit
-  const handleDeleteCategory = async (cateId) => {
+  const handleDeleteProduct = async (cateId) => {
     try {
       await mutateAsync(cateId);
     } catch (error) {
@@ -29,7 +30,7 @@ const ProductTable = () => {
     }
   };
 
-  // categories count start from zero
+  // products count start from zero
   // and later on incresed through loop
   let count = 1;
 
@@ -51,18 +52,18 @@ const ProductTable = () => {
             <div className="tablerow">
               <div>{count++}</div>
               <div>
-                <img src={product?.picture} alt="thumbnail" />
+                <Image publicId={product?.pictureid} width="300" crop="scale" />
               </div>
               <div className="title">{product?.title || "Product title"}</div>
               <div>Category</div>
               <div className="comment">3</div>
               <div className="actions">
-                <Link to="a">
+                <Link to={`/admin/product/update/${product?._id}`}>
                   <HiPencil />
                 </Link>
                 <AiOutlineDelete
                   onClick={() => {
-                    handleDeleteCategory(product?._id);
+                    handleDeleteProduct(product?._id);
                   }}
                 />
               </div>
